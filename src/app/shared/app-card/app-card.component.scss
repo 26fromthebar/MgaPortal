@@ -1,0 +1,67 @@
+.app-card {
+  display: grid;
+
+  @media (width > 50em) {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
+  }
+
+  &__img-wrapper {
+    height: 15rem;
+    overflow: hidden;
+
+    @media (width > 50em) {
+      height: 20rem;
+    }
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    padding: var(--rds-4) var(--rds-5);
+  }
+
+  &__title {
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-32);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  &__link-wrapper {
+    padding: 2rem 2rem 0;
+    font-size: var(--fs-16);
+    border-left: 1.5px solid var(--color-tertiary);
+    border-bottom: 1.5px solid var(--color-tertiary);
+    border-image: linear-gradient(
+        to right,
+        #ab6716 0px,
+        #ab6716 36px,
+        transparent 36px,
+        transparent 100%
+      )
+      1;
+
+    & button {
+      margin-left: -0.5rem;
+      padding: 0.5rem;
+      border: 0;
+      background-color: var(--color-bg);
+      transform: translateY(50%);
+      transition: margin-left 0.2s linear;
+
+      &:hover {
+        margin-left: 0.25rem;
+      }
+    }
+  }
+}

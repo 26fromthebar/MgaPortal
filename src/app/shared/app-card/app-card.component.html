@@ -1,0 +1,11 @@
+<div class="app-card">
+  <div class="app-card__img-wrapper">
+    <img [src]="imgSrc" [alt]="title" />
+  </div>
+  <div class="app-card__content">
+    <p class="app-card__title">{{ title }}</p>
+    <div href="/" class="app-card__link-wrapper">
+      <button [routerLink]="linkUrl">{{ linkText }}</button>
+    </div>
+  </div>
+</div>

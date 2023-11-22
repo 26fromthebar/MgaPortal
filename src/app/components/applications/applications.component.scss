@@ -1,0 +1,12 @@
+.apps {
+  &__text {
+    max-width: 100ch;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: var(--rds-6);
+  }
+}

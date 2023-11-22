@@ -1,1 +1,44 @@
-<p>applications works!</p>
+<section class="section apps cont-lg">
+  <h1 class="title--primary">{{ title }}</h1>
+  <p class="apps__text">{{ text }}</p>
+
+  <div class="dec-line m-b-5 m-t-4"></div>
+
+  <div class="apps__content">
+    <app-app-card
+      [title]="'Interactive Holographic Guide'"
+      [imgSrc]="'/assets/images/app-1.png'"
+      [linkUrl]="'/'"
+      [linkText]="'Δείτε'"
+    ></app-app-card>
+
+    <div class="dec-line"></div>
+
+    <app-app-card
+      [title]="'MGA V-ART Room'"
+      [imgSrc]="'/assets/images/app-2.png'"
+      [linkUrl]="'/'"
+      [linkText]="'Δείτε'"
+    ></app-app-card>
+
+    <div class="dec-line"></div>
+
+    <app-app-card
+      [title]="'Web Εφαρμογή Περιηγητής στα Έργα του Μουσείου'"
+      [imgSrc]="'/assets/images/default-image.jpg'"
+      [linkUrl]="'/'"
+      [linkText]="'Δείτε'"
+    ></app-app-card>
+
+    <div class="dec-line"></div>
+
+    <app-app-card
+      [title]="'Ψηφιακά Μουσειοπαιχνίδια'"
+      [imgSrc]="'/assets/images/default-image.jpg'"
+      [linkUrl]="'/'"
+      [linkText]="'Δείτε'"
+    ></app-app-card>
+
+    <div class="dec-line"></div>
+  </div>
+</section>

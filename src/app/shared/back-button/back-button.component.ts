@@ -7,9 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BackButtonComponent implements OnInit {
   @Input() link: string = '';
-
   @Input() linkText: string = '';
-  @Input() fill: string = '';
   constructor() {}
 
   ngOnInit(): void {}
