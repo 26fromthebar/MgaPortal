@@ -33,7 +33,8 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     // this.fetchContainer('87742b59-9bb3-4b82-86c6-ac9e9ffea484');
     // this.fetchAllChildren();
     // this.fetchChildrenBySearchValues(this.searchValues);
-    this.fetchDataStreams('87742b59-9bb3-4b82-86c6-ac9e9ffea484');
+    // this.fetchDataStreams('87742b59-9bb3-4b82-86c6-ac9e9ffea484');
+    this.fetchChildrenWithDetails();
   }
 
   fetchParentContainer() {
@@ -67,6 +68,15 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   fetchDataStreams(id: string) {
     this.dataService.getDataStreams(id).subscribe({
       next: (response: IPagedDataStreamResult) => console.log(response),
+      error: (err) => console.log(err),
+    });
+  }
+
+  fetchChildrenWithDetails() {
+    this.dataService.getChildrenWithDetails().subscribe({
+      //In the 'next' callback I have to create a new array with the items having only
+      //the properties I need, cause they are many and duplicate now
+      next: (response) => console.log(response),
       error: (err) => console.log(err),
     });
   }

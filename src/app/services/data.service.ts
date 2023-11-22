@@ -71,14 +71,13 @@ export class DataService {
         const requests = items.map((item: IContainerChild) =>
           this.getContainer(item.uuid)
         );
-        return forkJoin(requests, (...details) =>
+        return forkJoin(requests, (...content) =>
           items.map((item, index) => ({
             ...item,
-            details: details[index],
+            content: content[index],
           }))
         );
       })
-      // tap((data) => console.log(data))
     );
   }
 }
