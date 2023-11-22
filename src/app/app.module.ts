@@ -12,6 +12,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { ItemComponent } from './components/item/item.component';
+import { BackButtonComponent } from './shared/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ItemComponent } from './components/item/item.component';
     HeaderComponent,
     PaginationComponent,
     ItemComponent,
+    BackButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

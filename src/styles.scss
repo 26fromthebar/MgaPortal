@@ -1,1 +1,393 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /* Color CSS variables */
+  --color-primary: #252930;
+  // --color-primary-light: #e9f6e7;
+  // --color-primary-dark: #67c15f;
+  --color-secondary: #566148;
+  // --color-secondary-dark: #023e8a;
+  // --color-secondary-light: #19a6f1;
+  --color-tertiary: #ab6716;
+  /*--color-tertiary-light: #DFEDB8;*/
+  // --color-quaternary: #772110;
+  --color-text: #000000;
+  // --color-text-dark: #010000;
+  --color-bg: #e3dbc8;
+  // --color-bg-light: #f8f8f8;
+  // --color-bg-dark: #f8f8f8;
+  --color-grey: #bdbdbd;
+  --color-grey-light: #f2f2f2;
+  --color-grey-dark: #333333;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  /* Font-family CSS variables */
+  --ff-primary: "Noto Sans", sans-serif;
+  --ff-secondary: "Noto Serif", serif;
+  /* Responsive font-size variables (360px - 1920px)*/
+  --fs-placeholder: clamp(0.875rem, 0.7308rem + 0.641vw, 1.5rem);
+  --fs-14: clamp(0.75rem, 0.715rem + 0.16vw, 0.875rem);
+  --fs-16: clamp(0.9375rem, 0.9231rem + 0.0641vw, 1rem);
+  --fs-18: clamp(1rem, 0.925rem + 0.2vw, 1.125rem);
+  --fs-20: clamp(1rem, 0.9423rem + 0.2564vw, 1.25rem);
+  --fs-22: clamp(1.1875rem, 1.1442rem + 0.1923vw, 1.375rem);
+  --fs-24: clamp(1.125rem, 1.1rem + 0.4vw, 1.5rem);
+  --fs-28: clamp(1.25rem, 1.1346rem + 0.5128vw, 1.75rem);
+  --fs-32: clamp(1.375rem, 1.2308rem + 0.641vw, 2rem);
+  --fs-36: clamp(1.5rem, 1.05rem + 1.2vw, 2.25rem);
+  --fs-40: clamp(1.5rem, 1.2692rem + 1.0256vw, 2.5rem);
+  --fs-48: clamp(1.75rem, 1.4615rem + 1.2821vw, 3rem);
+  --fs-56: clamp(1.75rem, 1.3462rem + 1.7949vw, 3.5rem);
+  --fs-64: clamp(1.75rem, 1.2308rem + 2.3077vw, 4rem);
+  --fs-96: clamp(2rem, 0.3636rem + 7.2727vw, 6rem);
+  --fs-129: clamp(3rem, 0.9545rem + 9.0909vw, 8rem);
+  /* Other CSS variables (360px - 1920px) */
+  --rds-1: clamp(0.5rem, 0.3846rem + 0.5128vw, 1rem);
+  --rds-2: clamp(1rem, 0.7692rem + 1.0256vw, 2rem);
+  --rds-3: clamp(1.5rem, 1.1538rem + 1.5385vw, 3rem);
+  --rds-4: clamp(2rem, 1.5385rem + 2.0513vw, 4rem);
+  --rds-5: clamp(2.5rem, 1.9231rem + 2.5641vw, 5rem);
+  --rds-6: clamp(3rem, 2.3077rem + 3.0769vw, 6rem);
+  --rds-8: clamp(4rem, 3.0769rem + 4.1026vw, 8rem);
+  --rds-10: clamp(5rem, 3.8462rem + 5.1282vw, 10rem);
+  --rds-12: clamp(6rem, 4.6154rem + 6.1538vw, 12rem);
+  --rds-15: clamp(7.5rem, 5.7692rem + 7.6923vw, 15rem);
+  --rds-20: clamp(10rem, 7.6923rem + 10.2564vw, 20rem);
+  --rds-25: clamp(12.5rem, 9.6154rem + 12.8205vw, 25rem);
+  --rds-30: clamp(15rem, 11.5385rem + 15.3846vw, 30rem);
+  /* Elements height variables (360px - 1920px) */
+  --header-height: clamp(3.5rem, 3.1379rem + 1.6552vw, 5rem);
+  --header-left-width: 5rem;
+}
+
+/* Global reset */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::-moz-selection,
+*::selection {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+*::-moz-placeholder,
+*:-ms-input-placeholder,
+*::placeholder {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-placeholder);
+  opacity: 0.7;
+  color: var(--color-white);
+}
+
+*::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+  visibility: hidden;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--color-white); /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary); /* color of the scroll thumb */
+  border-radius: 100vh; /* roundness of the scroll thumb */
+  border: 3px solid var(--color-white); /* creates padding around scroll thumb */
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-white);
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+/* General styling properties and typography start */
+body {
+  min-height: 100vh;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-18);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ff-secondary);
+  line-height: 1.1;
+  color: var(--color-text);
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: var(--fs-36);
+}
+
+h2 {
+  font-size: var(--fs-40);
+}
+
+h3 {
+  font-size: var(--fs-28);
+}
+
+h4 {
+  font-size: var(--fs-24);
+}
+
+p {
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+// Link styles in the right order
+a {
+  font-family: inherit;
+  color: var(--color-text);
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+a:link {
+}
+
+a:visited {
+}
+
+a:focus {
+}
+
+a:hover {
+}
+
+a:active {
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+  display: block;
+  max-width: 100%;
+}
+
+button,
+label,
+input,
+textarea {
+  font-family: var(--ff-primary);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  color: var(--color-text);
+}
+
+button {
+  cursor: pointer;
+}
+
+// Utils classes
+// Containers
+.cont,
+.cont-xs,
+.cont-sm,
+.cont-lg,
+.cont-xl,
+.cont-left,
+.cont-right,
+.cont-right-sm {
+  margin-inline: auto;
+  width: 94%;
+  // max-width: 1600px;
+}
+
+@media screen and (min-width: 65em) {
+  .cont-xs {
+    /*width: 50%;*/
+    width: 55%;
+  }
+
+  .cont-sm {
+    width: 70%;
+  }
+
+  .cont {
+    width: 80%;
+  }
+
+  .cont-lg {
+    width: 92%;
+  }
+
+  /*.cont-xl {
+        width: 92%;
+    }*/
+
+  .cont-left {
+    margin-inline: 0 auto;
+    width: 90%;
+  }
+
+  .cont-right {
+    margin-inline: auto 0;
+    width: 90%;
+  }
+}
+
+.center {
+  margin-inline: auto;
+}
+
+// Classes for margins
+.m-t-1 {
+  margin-top: var(--rds-1) !important;
+}
+
+.m-t-2 {
+  margin-top: var(--rds-2) !important;
+}
+
+.m-t-3 {
+  margin-top: var(--rds-3) !important;
+}
+
+.m-t-4 {
+  margin-top: var(--rds-4) !important;
+}
+
+.m-t-5 {
+  margin-top: var(--rds-5) !important;
+}
+
+.m-t-6 {
+  margin-top: var(--rds-6) !important;
+}
+
+.m-t-8 {
+  margin-top: var(--rds-8) !important;
+}
+
+.m-t-10 {
+  margin-top: var(--rds-10) !important;
+}
+
+.m-b-1 {
+  margin-bottom: var(--rds-1) !important;
+}
+
+.m-b-2 {
+  margin-bottom: var(--rds-2) !important;
+}
+
+.m-b-3 {
+  margin-bottom: var(--rds-3) !important;
+}
+
+.m-b-4 {
+  margin-bottom: var(--rds-4) !important;
+}
+
+.m-b-5 {
+  margin-bottom: var(--rds-5) !important;
+}
+
+.m-b-6 {
+  margin-bottom: var(--rds-6) !important;
+}
+
+.m-b-8 {
+  margin-bottom: var(--rds-8) !important;
+}
+
+.m-b-10 {
+  margin-bottom: var(--rds-10) !important;
+}
+
+.section {
+  padding-block: var(--rds-3);
+}
+
+.title {
+  font-family: var(--ff-secondary);
+  color: var(--color-tertiary);
+  font-weight: 700;
+  font-size: var(--fs-36);
+
+  &--primary {
+    @extend .title;
+    margin-bottom: 3rem;
+  }
+}
+
+.type-btn {
+  padding: 1em 3em;
+  background-color: transparent;
+  // border: 1px solid var(--color-white);
+  border: 0;
+  font-size: var(--fs-16);
+  text-transform: capitalize;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  &:hover,
+  &.active {
+    background-color: var(--color-tertiary);
+    color: var(--color-white);
+  }
+}
+
+.btn-outline {
+  padding: 1em 3em;
+  background-color: transparent;
+  border: 1px solid var(--color-white);
+  font-size: var(--fs-18);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--color-white);
+    color: var(--color-text);
+  }
+}
+
+.arrow-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: fit-content;
+  transition: gap 0.2s ease-in-out;
+
+  & svg {
+    max-width: 2rem;
+  }
+
+  &:hover {
+    gap: 1.5rem;
+  }
+}
+
+.dec-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-white);
+}

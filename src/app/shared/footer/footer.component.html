@@ -1,1 +1,54 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="footer__top">
+    <app-back-button
+      [link]="'https://mgamuseum.gr/'"
+      [linkText]="'Πίσω στο mgamuseum.gr'"
+    ></app-back-button>
+  </div>
+
+  <div class="footer__main cont-lg">
+    <div class="footer__logo">
+      <div class="footer__img-wrapper">
+        <img src="/assets/images/logo-mga-footer.svg" alt="Mga logo" />
+      </div>
+      <p class="footer__logo-text">
+        Μουσείο Νεοελληνικής Τέχνης του Δήμου Ρόδου
+      </p>
+      <p class="footer__logo-info">
+        Πλ. Γαβριήλ Χαρίτου 12. 85131, Τηλ. 2241 036646E-mail:
+        contact@mgamuseum.gr
+      </p>
+    </div>
+
+    <div class="footer__nav">
+      <ul class="footer__nav-list">
+        <li><a [routerLink]="['/']" class="footer__link">Συλλογές</a></li>
+        <li><a [routerLink]="['/']" class="footer__link">Εφαρμογές</a></li>
+        <li><a [routerLink]="['/']" class="footer__link">Σχετικά</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__policy">
+      <ul class="footer__policy-list">
+        <li><a href="/" class="footer__link">Πολιτική απορρήτου</a></li>
+        <li><a href="/" class="footer__link">Cookies</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__social">
+      <ul class="footer__social-list">
+        <li><a href="/" class="footer__social-link">Facebook</a></li>
+        <li><a href="/" class="footer__social-link">Instagram</a></li>
+        <li><a href="/" class="footer__social-link">Twitter</a></li>
+        <li><a href="/" class="footer__social-link">YouTube</a></li>
+        <li><a href="/" class="footer__social-link">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>
+      Ψηφιοποίηση, Τεκμηρίωση και Ανάδειξη συλλογής Μουσείου Νεοελληνικής Τέχνης
+      Δήμου Ρόδου © 2023 / All Rights Reserved
+    </p>
+  </div>
+</footer>

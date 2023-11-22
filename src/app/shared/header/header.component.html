@@ -1,1 +1,53 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header__top">
+    <app-back-button
+      [link]="'https://mgamuseum.gr/'"
+      [linkText]="'Πίσω στο mgamuseum.gr'"
+    ></app-back-button>
+  </div>
+  <div class="header__bottom cont-lg">
+    <div class="header__brand">
+      <a routerLink="/" class="header__logo">
+        <img src="/assets/images/logo.svg" alt="MGA Museum logo" />
+      </a>
+      <div class="header__logo-line"></div>
+      <p class="header__logo-text">
+        Ψηφιοποιηση, Τεκμηριωση και Αναδειξη συλλογης Μουσειου Νεοελληνικης
+        Τεχνης Δημου Ροδου
+        <!-- Ψηφιοποίηση, Τεκμηρίωση και Ανάδειξη συλλογής Μουσείου Νεοελληνικής Τέχνης
+      Δήμου Ρόδου -->
+      </p>
+    </div>
+    <nav class="header__nav">
+      <ul class="header__nav-list">
+        <li>
+          <a
+            [routerLink]="['/collections']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="header__nav-link"
+            >ΣΥΛΛΟΓΕΣ</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/applications']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="header__nav-link"
+            >ΕΦΑΡΜΟΓΕΣ</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/about']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="header__nav-link"
+            >ΣΧΕΤΙΚΑ</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

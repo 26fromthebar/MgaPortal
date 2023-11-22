@@ -1,0 +1,13 @@
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  font-size: var(--fs-16);
+  color: var(--color-white);
+  transition: gap 0.2s linear;
+
+  &:hover {
+    gap: 1.25rem;
+  }
+}
