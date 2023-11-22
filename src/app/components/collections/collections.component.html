@@ -1,1 +1,131 @@
-<p>collections works!</p>
+<section class="section collections cont-lg">
+  <h1 class="title--primary">{{ title }}</h1>
+
+  <!-- <div class="collections__btns-wrapper">
+    <button class="type-btn active" (click)="fetchAllChildren()">Όλα</button>
+    <button
+      *ngFor="let type of itemTypes"
+      (click)="changeSearchValuesAndRefetch(type)"
+      class="type-btn"
+    >
+      {{ type }}
+    </button>
+  </div> -->
+
+  <!-- <div class="search">
+    <form
+      [formGroup]="searchForm"
+      class="search__form"
+      (ngSubmit)="onSearchSubmit()"
+    >
+      <input
+        type="text"
+        class="search__input"
+        placeholder="Αναζητήστε..."
+        formControlName="searchValue"
+      />
+      <button
+        type="submit"
+        [disabled]="searchForm.invalid"
+        class="search__submit-btn btn-outline"
+      >
+        Αναζήτηση
+      </button>
+    </form>
+  </div> -->
+
+  <!-- <div *ngIf="!noResults" class="collections__content">
+    <div class="collections__content-col--1">
+      <a
+        *ngFor="let item of itemsWithDetailsCol1"
+        [routerLink]="['/collections', item.uuid]"
+        class="collection-card"
+      >
+        <div class="collection-card__img-wrapper">
+          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
+        </div>
+        <div class="collection-card__content">
+          <p class="collection-card__title">
+            {{ item.title }}
+          </p>
+          <p class="collection-card__creator">
+            {{ item.creator }}
+          </p>
+          <button class="collection-card__btn">Περισσότερα</button>
+        </div>
+      </a>
+    </div>
+    <div class="collections__content-col--2">
+      <a
+        *ngFor="let item of itemsWithDetailsCol2"
+        [routerLink]="['/collections', item.uuid]"
+        class="collection-card"
+      >
+        <div class="collection-card__img-wrapper">
+          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
+        </div>
+        <div class="collection-card__content">
+          <p class="collection-card__title">
+            {{ item.title }}
+          </p>
+          <p class="collection-card__creator">
+            {{ item.creator }}
+          </p>
+          <button class="collection-card__btn">Περισσότερα</button>
+        </div>
+      </a>
+    </div>
+    <div class="collections__content-col--3">
+      <a
+        *ngFor="let item of itemsWithDetailsCol3"
+        [routerLink]="['/collections', item.uuid]"
+        class="collection-card"
+      >
+        <div class="collection-card__img-wrapper">
+          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
+        </div>
+        <div class="collection-card__content">
+          <p class="collection-card__title">
+            {{ item.title }}
+          </p>
+          <p class="collection-card__creator">
+            {{ item.creator }}
+          </p>
+          <button class="collection-card__btn">Περισσότερα</button>
+        </div>
+      </a>
+    </div>
+    <div class="collections__content-col--4">
+      <a
+        *ngFor="let item of itemsWithDetailsCol4"
+        [routerLink]="['/collections', item.uuid]"
+        class="collection-card"
+      >
+        <div class="collection-card__img-wrapper">
+          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
+        </div>
+        <div class="collection-card__content">
+          <p class="collection-card__title">
+            {{ item.title }}
+          </p>
+          <p class="collection-card__creator">
+            {{ item.creator }}
+          </p>
+          <button class="collection-card__btn">Περισσότερα</button>
+        </div>
+      </a>
+    </div>
+  </div> -->
+
+  <!-- <div *ngIf="noResults" class="collections__no-results">
+    <p class="collections__no-results-text">
+      Δεν βρέθηκαν αποτελέσματα για την συγκεκριμένη αναζήτηση
+    </p>
+  </div> -->
+
+  <!-- <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChange)="onPageChange($event)"
+  ></app-pagination> -->
+</section>

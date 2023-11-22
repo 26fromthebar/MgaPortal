@@ -1,1 +1,221 @@
-<p>item works!</p>
+<!--
+<div *ngIf="isFullscreen" class="fullscreen">
+  <div class="fullscreen__img-wrapper">
+    <img
+      [src]="
+        itemFile
+          ? itemFile.bitstreamFile.viewUrl
+          : '/assets/images/default-image.jpg'
+      "
+      [alt]="item.title"
+    />
+  </div>
+  <button class="fullscreen__close-btn" (click)="onClickFullscreen()">
+    <svg
+      width="23"
+      height="23"
+      viewBox="0 0 23 23"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M23 2.31643L20.6836 0L11.5 9.18357L2.31643 0L0 2.31643L9.18357 11.5L0 20.6836L2.31643 23L11.5 13.8164L20.6836 23L23 20.6836L13.8164 11.5L23 2.31643Z"
+        fill="white"
+      />
+    </svg>
+  </button>
+</div>
+
+<div *ngIf="isSharing" class="social-share">
+  <button (click)="shareOnFacebook()" aria-label="Share on Facebook">
+    <svg
+      width="30"
+      height="28"
+      viewBox="0 0 30 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_4207_2291)">
+        <path
+          d="M29.1 8.2C29 6.7 28.8 5.7 28.4 4.8C28 3.9 27.5 3 26.8 2.3C26.1 1.6 25.3 1 24.3 0.7C23.4 0.4 22.4 0.1 20.9 0C19.5 0 23 0 14 0C10.2 0 9.7 0 8.2 0.1C6.7 0.1 5.7 0.4 4.8 0.7C3.9 1.1 3.1 1.6 2.4 2.4C1.6 3.1 1.1 3.9 0.7 4.8C0.4 5.7 0.2 6.7 0.1 8.2C0 9.7 0 10.2 0 14C0 17.8 0 18.3 0.1 19.8C0.2 21.3 0.4 22.3 0.8 23.2C1.2 24.1 1.7 25 2.4 25.7C3.1 26.4 3.9 27 4.9 27.3C5.8 27.6 6.8 27.9 8.3 28C9.7 28 10.2 28 14 28C23 28 19.5 28 21 27.9C22.5 27.8 23.5 27.6 24.4 27.2C26.3 26.5 27.8 25 28.5 23.1C28.8 22.2 29.1 21.2 29.2 19.7C29.3 18.2 29.3 17.7 29.3 13.9C29.2 10.2 29.2 9.7 29.1 8.2ZM26.6 19.7C26.5 21.1 26.3 21.8 26.1 22.3C25.6 23.5 24.7 24.5 23.4 25C22.9 25.2 22.2 25.4 20.8 25.5C19.3 25.6 22.9 25.6 13.9 25.6C10.2 25.6 9.7 25.6 8.2 25.5C6.8 25.4 6.1 25.2 5.6 25C5 24.8 4.4 24.4 4 24C3.5 23.5 3.2 23 3 22.4C2.8 21.9 2.6 21.2 2.5 19.8C2.4 18.3 2.4 17.9 2.4 14.1C2.4 10.4 2.4 9.9 2.5 8.4C2.7 7 2.9 6.3 3.1 5.8C3.3 5.2 3.7 4.6 4.2 4.2C4.7 3.7 5.2 3.4 5.8 3.2C6.3 2.9 7 2.7 8.4 2.6C9.9 2.5 10.3 2.5 14.1 2.5C23 2.5 19.5 2.5 21 2.6C22.4 2.7 23.1 2.9 23.6 3.1C24.2 3.3 24.8 3.7 25.2 4.1C25.7 4.6 26 5.1 26.2 5.7C26.4 6.2 26.6 6.9 26.7 8.3C26.8 9.8 26.8 10.2 26.8 14C26.7 17.7 26.7 18.2 26.6 19.7Z"
+          fill="white"
+        />
+        <path
+          d="M18.3004 15.1002L18.7004 12.2002H16.0004V10.3002C16.0004 9.5002 16.4004 8.7002 17.6004 8.7002H18.9004V6.4002C18.9004 6.4002 17.8004 6.2002 16.7004 6.2002C14.4004 6.2002 12.9004 7.6002 12.9004 10.1002V12.3002H10.4004V15.2002H12.9004V22.2002C13.4004 22.3002 13.9004 22.3002 14.5004 22.3002C15.0004 22.3002 15.5004 22.3002 16.1004 22.2002V15.2002H18.3004V15.1002Z"
+          fill="white"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_4207_2291">
+          <rect width="29.2" height="28" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  </button>
+  <button (click)="shareOnTwitter()" aria-label="Share on X">
+    <svg
+      width="30"
+      height="28"
+      viewBox="0 0 30 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_4207_2287)">
+        <path
+          d="M29.1 8.2C29 6.7 28.8 5.7 28.4 4.8C28 3.9 27.5 3 26.8 2.3C26.1 1.6 25.3 1 24.3 0.7C23.4 0.4 22.4 0.1 20.9 0C19.5 0 23 0 14 0C10.2 0 9.7 0 8.2 0.1C6.7 0.1 5.7 0.4 4.8 0.7C3.9 1.1 3.1 1.6 2.4 2.4C1.6 3.1 1.1 3.9 0.7 4.8C0.4 5.7 0.2 6.7 0.1 8.2C0 9.7 0 10.2 0 14C0 17.8 0 18.3 0.1 19.8C0.2 21.3 0.4 22.3 0.8 23.2C1.2 24.1 1.7 25 2.4 25.7C3.1 26.4 3.9 27 4.9 27.3C5.8 27.6 6.8 27.9 8.3 28C9.7 28 10.2 28 14 28C23 28 19.5 28 21 27.9C22.5 27.8 23.5 27.6 24.4 27.2C26.3 26.5 27.8 25 28.5 23.1C28.8 22.2 29.1 21.2 29.2 19.7C29.3 18.2 29.3 17.7 29.3 13.9C29.2 10.2 29.2 9.7 29.1 8.2ZM26.6 19.7C26.5 21.1 26.3 21.8 26.1 22.3C25.6 23.5 24.7 24.5 23.4 25C22.9 25.2 22.2 25.4 20.8 25.5C19.3 25.6 22.9 25.6 13.9 25.6C10.2 25.6 9.7 25.6 8.2 25.5C6.8 25.4 6.1 25.2 5.6 25C5 24.8 4.4 24.4 4 24C3.5 23.5 3.2 23 3 22.4C2.8 21.9 2.6 21.2 2.5 19.8C2.4 18.3 2.4 17.9 2.4 14.1C2.4 10.4 2.4 9.9 2.5 8.4C2.7 7 2.9 6.3 3.1 5.8C3.3 5.2 3.7 4.6 4.2 4.2C4.7 3.7 5.2 3.4 5.8 3.2C6.3 2.9 7 2.7 8.4 2.6C9.9 2.5 10.3 2.5 14.1 2.5C23 2.5 19.5 2.5 21 2.6C22.4 2.7 23.1 2.9 23.6 3.1C24.2 3.3 24.8 3.7 25.2 4.1C25.7 4.6 26 5.1 26.2 5.7C26.4 6.2 26.6 6.9 26.7 8.3C26.8 9.8 26.8 10.2 26.8 14C26.7 17.7 26.7 18.2 26.6 19.7Z"
+          fill="white"
+        />
+        <path
+          d="M17.3008 20.9002L14.0008 16.2002L10.0008 20.9002H7.80078L13.1008 14.8002L7.90078 7.2002H12.6008L15.7008 11.7002L19.6008 7.2002H21.8008L16.7008 13.1002L22.1008 20.9002H17.3008ZM19.0008 19.3002L11.7008 8.9002H11.0008L18.3008 19.3002H19.0008Z"
+          fill="white"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_4207_2287">
+          <rect width="29.2" height="28" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  </button>
+  <button (click)="shareOnLinkedIn()" aria-label="Share on LinkedIn">
+    <svg viewBox="0 0 183.836 179.8984" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <path
+          d="M21.5663,0C9.0703,0,0,8.6172,0,20.488c0,11.8636,8.8907,20.4748,21.1367,20.4748c6.3516,0,11.8244-2.0584,15.828-5.9552   c3.84-3.738,5.9572-8.8944,5.9532-14.6132C42.6367,8.3868,33.8555,0,21.5663,0z M31.3867,29.2732   c-2.4804,2.4144-6.0272,3.6896-10.25,3.6896C13.4023,32.9628,8,27.834,8,20.488C8,13.0196,13.4531,8,21.5663,8   c7.9337,0,13.172,4.9392,13.3516,12.49C34.9179,23.9376,33.664,27.0564,31.3867,29.2732z"
+        />
+        <path
+          d="M3.836,179.8984h35.9531V47.7208H3.836V179.8984z M11.836,55.7208h19.9531v116.1776H11.836V55.7208z"
+        />
+        <path
+          d="M134.5939,47.7208c-16.672,0-26.8792,5.7536-32.7932,11.166l-1.1247-11.166H60v132.1776h39.836v-69.4708   c0-2.992,1.2107-9.2052,1.9727-10.8456c4.8124-10.3652,11.3044-10.3652,21.1364-10.3652c11.3244,0,20.8909,10.6192,20.8909,23.1876   v67.494h40v-74.6816C183.836,65.7128,158.3087,47.7208,134.5939,47.7208z M175.836,171.8984h-24v-59.494   c0-16.9064-13.2305-31.1876-28.8909-31.1876c-10.0468,0-21.4336,0-28.3944,14.998c-1.4376,3.0996-2.7147,10.5292-2.7147,14.2128   v61.4708H68V55.7208h25.4415l1.6328,16.1776h6.5544l1.172-1.8908c2.668-4.2948,11.1056-14.2868,31.7932-14.2868   c19.8632,0,41.2421,15.488,41.2421,49.496V171.8984z"
+        />
+      </g>
+    </svg>
+  </button>
+</div>
+
+<section *ngIf="item">
+  <div class="hero">
+    <div class="single__top">
+      <div class="cont-lg">
+        <a routerLink="/collections" class="single__back-btn"
+          ><svg
+            width="28"
+            height="16"
+            viewBox="0 0 28 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M27 9C27.5523 9 28 8.55228 28 8C28 7.44772 27.5523 7 27 7L27 9ZM0.292894 7.29289C-0.0976295 7.68342 -0.0976296 8.31658 0.292894 8.7071L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31945 8.07107 0.928931C7.68054 0.538406 7.04738 0.538406 6.65686 0.92893L0.292894 7.29289ZM27 7L1 7L1 9L27 9L27 7Z"
+              fill="#ab6716"
+            />
+          </svg>
+
+          <span>Πίσω στη συλλογή</span></a
+        >
+      </div>
+    </div>
+    <div class="single__hero cont-lg">
+      <div class="single__img-wrapper">
+        <img
+          [src]="
+            itemFile
+              ? itemFile.bitstreamFile.viewUrl
+              : '/assets/images/default-image.jpg'
+          "
+          [alt]="item.title"
+        />
+      </div>
+      <div class="user-actions">
+        <button
+          class="user-actions__share-btn"
+          aria-label="Share page"
+          (click)="onClickSocialShare()"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_176_946)">
+              <path
+                d="M16 5L14.58 6.42L12.99 4.83V16H11.01V4.83L9.42 6.42L8 5L12 1L16 5ZM20 10V21C20 22.1 19.1 23 18 23H6C4.89 23 4 22.1 4 21V10C4 8.89 4.89 8 6 8H9V10H6V21H18V10H15V8H18C19.1 8 20 8.89 20 10Z"
+                fill="#010000"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_176_946">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+        <button
+          class="user-actions__zoom-btn"
+          aria-label="Zoom image"
+          (click)="onClickFullscreen()"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_176_940)">
+              <path
+                d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14ZM10 7H9V9H7V10H9V12H10V10H12V9H10V7Z"
+                fill="#010000"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_176_940">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="single__dec cont-lg"></div>
+  <div class="single__content cont-lg">
+    <div class="single__main">
+      <h1 class="single__title">
+        {{ item.title }}, <span class="single__date">{{ item.date }}</span>
+      </h1>
+      <p class="single__creator">{{ item.creator }}</p>
+      <p class="single__description-label">Περιγραφή</p>
+      <p class="single__description">{{ item.description }}</p>
+    </div>
+    <aside class="single__aside">
+      <div class="single__item-info">
+        <p class="single__property-label">ID</p>
+        <p class="single__property-value">{{ item.id }}</p>
+      </div>
+      <div class="single__item-info">
+        <p class="single__property-label">Ημερομηνία διαδικτυακής διάθεσης</p>
+        <p class="single__property-value">{{ item.onlineAt }}</p>
+      </div>
+      <div class="single__item-info">
+        <p class="single__property-label">Υλικό κατασκευής</p>
+        <p class="single__property-value">{{ item.material }}</p>
+      </div>
+      <div class="single__item-info">
+        <p class="single__property-label">Καθαρές διαστάσεις</p>
+        <p class="single__property-value">{{ item.dimensions }}</p>
+      </div>
+      <div class="single__item-info">
+        <p class="single__property-label">Πνευματικά Δικαιώματα</p>
+        <p class="single__property-value">{{ item.copyright }}</p>
+      </div>
+      <div class="single__item-info">
+        <p class="single__property-label">Πηγή Τεκμηρίου</p>
+        <p class="single__property-value">{{ item.source }}</p>
+      </div>
+    </aside>
+  </div>
+</section> -->
