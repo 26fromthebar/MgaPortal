@@ -1,0 +1,73 @@
+.collection-card {
+  width: 100%;
+  position: relative;
+
+  &__img-wrapper {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    & img {
+      width: 100%;
+      // height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__content {
+    padding: 0.5rem 2rem 0rem;
+    // background-color: var(--color-black);
+    border-left: 1.5px solid var(--color-tertiary);
+    border-bottom: 1.5px solid var(--color-tertiary);
+    border-image: linear-gradient(
+        to right,
+        #ab6716 0px,
+        #ab6716 36px,
+        transparent 36px,
+        transparent 100%
+      )
+      1;
+    z-index: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &__title,
+  &__btn,
+  &__creator {
+  }
+
+  &__title {
+    margin-bottom: 0.5rem;
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-20);
+    color: var(--color-tertiary);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  &__creator {
+    margin-bottom: 2rem;
+    font-size: var(--fs-16);
+    font-weight: 400;
+  }
+
+  &__btn {
+    padding: 0.5rem;
+    margin-left: -0.5rem;
+    border: 0;
+    background-color: var(--color-bg);
+    font-size: var(--fs-14);
+    font-weight: 400;
+    transform: translateY(50%);
+    transition: margin-left 0.2s linear;
+
+    &:hover {
+      margin-left: 0.25rem;
+    }
+  }
+
+  &:hover {
+    & .collection-card__btn {
+      margin-left: 0.25rem;
+    }
+  }
+}

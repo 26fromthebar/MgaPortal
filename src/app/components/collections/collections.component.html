@@ -1,8 +1,13 @@
 <section class="section collections cont-lg">
   <h1 class="title--primary">{{ title }}</h1>
 
-  <!-- <div class="collections__btns-wrapper">
-    <button class="type-btn active" (click)="fetchAllChildren()">Όλα</button>
+  <div class="collections__btns-wrapper">
+    <button
+      class="type-btn active"
+      (click)="fetchChildren(currentPage, pageSize)"
+    >
+      Όλα
+    </button>
     <button
       *ngFor="let type of itemTypes"
       (click)="changeSearchValuesAndRefetch(type)"
@@ -10,7 +15,7 @@
     >
       {{ type }}
     </button>
-  </div> -->
+  </div>
 
   <!-- <div class="search">
     <form
@@ -34,98 +39,56 @@
     </form>
   </div> -->
 
-  <!-- <div *ngIf="!noResults" class="collections__content">
+  <div *ngIf="!noResults" class="collections__content">
     <div class="collections__content-col--1">
-      <a
-        *ngFor="let item of itemsWithDetailsCol1"
-        [routerLink]="['/collections', item.uuid]"
-        class="collection-card"
-      >
-        <div class="collection-card__img-wrapper">
-          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
-        </div>
-        <div class="collection-card__content">
-          <p class="collection-card__title">
-            {{ item.title }}
-          </p>
-          <p class="collection-card__creator">
-            {{ item.creator }}
-          </p>
-          <button class="collection-card__btn">Περισσότερα</button>
-        </div>
-      </a>
+      <app-collection-card
+        *ngFor="let item of itemSubList1"
+        [urlLink]="['/collection', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
     </div>
+
     <div class="collections__content-col--2">
-      <a
-        *ngFor="let item of itemsWithDetailsCol2"
-        [routerLink]="['/collections', item.uuid]"
-        class="collection-card"
-      >
-        <div class="collection-card__img-wrapper">
-          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
-        </div>
-        <div class="collection-card__content">
-          <p class="collection-card__title">
-            {{ item.title }}
-          </p>
-          <p class="collection-card__creator">
-            {{ item.creator }}
-          </p>
-          <button class="collection-card__btn">Περισσότερα</button>
-        </div>
-      </a>
+      <app-collection-card
+        *ngFor="let item of itemSubList2"
+        [urlLink]="['/collection', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
     </div>
     <div class="collections__content-col--3">
-      <a
-        *ngFor="let item of itemsWithDetailsCol3"
-        [routerLink]="['/collections', item.uuid]"
-        class="collection-card"
-      >
-        <div class="collection-card__img-wrapper">
-          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
-        </div>
-        <div class="collection-card__content">
-          <p class="collection-card__title">
-            {{ item.title }}
-          </p>
-          <p class="collection-card__creator">
-            {{ item.creator }}
-          </p>
-          <button class="collection-card__btn">Περισσότερα</button>
-        </div>
-      </a>
+      <app-collection-card
+        *ngFor="let item of itemSubList3"
+        [urlLink]="['/collection', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
     </div>
     <div class="collections__content-col--4">
-      <a
-        *ngFor="let item of itemsWithDetailsCol4"
-        [routerLink]="['/collections', item.uuid]"
-        class="collection-card"
-      >
-        <div class="collection-card__img-wrapper">
-          <img [src]="item.imageSrc" [alt]="item.imageAlt" />
-        </div>
-        <div class="collection-card__content">
-          <p class="collection-card__title">
-            {{ item.title }}
-          </p>
-          <p class="collection-card__creator">
-            {{ item.creator }}
-          </p>
-          <button class="collection-card__btn">Περισσότερα</button>
-        </div>
-      </a>
+      <app-collection-card
+        *ngFor="let item of itemSubList4"
+        [urlLink]="['/collection', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
     </div>
-  </div> -->
+  </div>
 
-  <!-- <div *ngIf="noResults" class="collections__no-results">
+  <div *ngIf="noResults" class="collections__no-results">
     <p class="collections__no-results-text">
       Δεν βρέθηκαν αποτελέσματα για την συγκεκριμένη αναζήτηση
     </p>
-  </div> -->
+  </div>
 
-  <!-- <app-pagination
+  <app-pagination
+    *ngIf="totalPages > 1"
     [currentPage]="currentPage"
     [totalPages]="totalPages"
     (pageChange)="onPageChange($event)"
-  ></app-pagination> -->
+  ></app-pagination>
 </section>

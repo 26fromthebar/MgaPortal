@@ -9,7 +9,7 @@ export interface IContainer {
   deletedAt?: string | null;
   deletedBy?: IUser | null;
   label: string;
-  properties: IProperty[];
+  properties?: IProperty[];
   publishedAt: string | null;
   publishedBy: IUser;
   tags?: [];

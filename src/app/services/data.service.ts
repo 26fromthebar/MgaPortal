@@ -1,6 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin, switchMap } from 'rxjs';
+import {
+  Observable,
+  concat,
+  forkJoin,
+  map,
+  mergeMap,
+  of,
+  shareReplay,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { IContainer } from '../types/icontainer';
 import { IPagedResult } from '../types/ipaged-result';
 import { IContainerChild } from '../types/icontainer-child';
@@ -37,10 +47,10 @@ export class DataService {
   }
 
   //Get parent container's children
-  getAllChildren(): Observable<IPagedResult> {
-    const url = `${this.apiUrl}/public/containers/${this.parentContainerUuid}/children`;
+  getChildren(page: number, pageSize: number): Observable<IPagedResult> {
+    const url = `${this.apiUrl}/public/containers/${this.parentContainerUuid}/children?page=${page}&size=${pageSize}`;
     return this.http.get<IPagedResult>(url, { headers: this.headers });
-    // .pipe(tap((res: IContainer) => console.log(res)));
+    // .pipe(tap((res: IPagedResult) => console.log(res)));
   }
 
   //Get container's children by search values (filtered)
@@ -63,21 +73,52 @@ export class DataService {
   }
 
   //Get children with their details in one combined observable
-  getChildrenWithDetails() {
-    return this.getAllChildren().pipe(
+  // getChildrenWithDetails(page: number, pageSize: number) {
+  //   return this.getChildren(page, pageSize).pipe(
+  //     tap((data: IPagedResult) => console.log(data)),
+  //     switchMap((data: IPagedResult) => {
+  //       const items: IContainerChild[] = data.content;
+  //       // Read more about these observable operators and assign correct types
+  //       const itemContainers = items.map((item: IContainerChild) =>
+  //         this.getContainer(item.uuid)
+  //       );
+
+  //       return forkJoin(itemContainers, (...content) =>
+  //         items.map((item, index) => ({
+  //           ...item,
+  //           content: content[index],
+  //         }))
+  //       );
+  //     })
+  //   );
+  // }
+
+  getChildrenWithDetails(
+    page: number,
+    pageSize: number
+  ): Observable<{
+    pageData: IPagedResult;
+    childrenDetails: IContainer[];
+  }> {
+    const sharedPageData = this.getChildren(page, pageSize).pipe(
+      // tap((data: IPagedResult) => console.log(data)),
+      shareReplay(1) // Share the result and replay it to new subscribers
+    );
+
+    const childrenDetails = sharedPageData.pipe(
       switchMap((data: IPagedResult) => {
         const items: IContainerChild[] = data.content;
         // Read more about these observable operators and assign correct types
-        const requests = items.map((item: IContainerChild) =>
+        const itemContainers = items.map((item: IContainerChild) =>
           this.getContainer(item.uuid)
         );
-        return forkJoin(requests, (...content) =>
-          items.map((item, index) => ({
-            ...item,
-            content: content[index],
-          }))
-        );
+        return forkJoin(itemContainers);
       })
     );
+
+    return forkJoin({
+      pageData: sharedPageData,
+      childrenDetails,
+    });
   }
 }

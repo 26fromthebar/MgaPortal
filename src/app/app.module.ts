@@ -15,6 +15,7 @@ import { PaginationComponent } from './shared/pagination/pagination.component';
 import { ItemComponent } from './components/item/item.component';
 import { BackButtonComponent } from './shared/back-button/back-button.component';
 import { AppCardComponent } from './shared/app-card/app-card.component';
+import { CollectionCardComponent } from './shared/collection-card/collection-card.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AppCardComponent } from './shared/app-card/app-card.component';
     ItemComponent,
     BackButtonComponent,
     AppCardComponent,
+    CollectionCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

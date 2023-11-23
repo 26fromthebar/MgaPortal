@@ -1,0 +1,14 @@
+<a [routerLink]="urlLink" class="collection-card">
+  <div class="collection-card__img-wrapper">
+    <img [src]="imgUrl" [alt]="title" />
+  </div>
+  <div class="collection-card__content">
+    <p class="collection-card__title">
+      {{ title }}
+    </p>
+    <p class="collection-card__creator">
+      {{ creator }}
+    </p>
+    <button class="collection-card__btn">Περισσότερα</button>
+  </div>
+</a>
