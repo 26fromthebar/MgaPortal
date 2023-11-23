@@ -63,13 +63,11 @@ export class DataService {
   getDataStreams(id: string): Observable<IPagedDataStreamResult> {
     const url = `${this.apiUrl}/public/containers/${id}/datastreams`;
 
-    return this.http
-      .get<IPagedDataStreamResult>(url, { headers: this.headers })
-      .pipe
-      // tap((res: IDatastreamContainer) => console.log(res))
+    return this.http.get<any>(url, { headers: this.headers }).pipe(
+      tap((res: any) => console.log(res))
       // map((res: IDatastreamContainer) => res.content[0])
       // tap((res) => console.log(res))
-      ();
+    );
   }
 
   //Get children with their details in one combined observable

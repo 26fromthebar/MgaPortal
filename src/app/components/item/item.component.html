@@ -1,5 +1,4 @@
-<!--
-<div *ngIf="isFullscreen" class="fullscreen">
+<!-- <div *ngIf="isFullscreen" class="fullscreen">
   <div class="fullscreen__img-wrapper">
     <img
       [src]="
@@ -24,7 +23,7 @@
       />
     </svg>
   </button>
-</div>
+</div> -->
 
 <div *ngIf="isSharing" class="social-share">
   <button (click)="shareOnFacebook()" aria-label="Share on Facebook">
@@ -120,8 +119,8 @@
       <div class="single__img-wrapper">
         <img
           [src]="
-            itemFile
-              ? itemFile.bitstreamFile.viewUrl
+            itemFiles[0]
+              ? itemFiles[0].bitstreamFile.viewUrl
               : '/assets/images/default-image.jpg'
           "
           [alt]="item.title"
@@ -218,4 +217,4 @@
       </div>
     </aside>
   </div>
-</section> -->
+</section>
