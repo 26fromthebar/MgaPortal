@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AppCardComponent implements OnInit {
   @Input() imgSrc: string = '/assets/images/default.jpg';
   @Input() title: string = 'Default title';
-  @Input() linkUrl: string = '/';
+  @Input() linkUrl: string[] = ['/'];
   @Input() linkText: string = 'Δείτε';
   constructor() {}
 

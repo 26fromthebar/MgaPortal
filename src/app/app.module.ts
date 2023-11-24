@@ -17,6 +17,7 @@ import { BackButtonComponent } from './shared/back-button/back-button.component'
 import { AppCardComponent } from './shared/app-card/app-card.component';
 import { CollectionCardComponent } from './shared/collection-card/collection-card.component';
 import { ImageSliderComponent } from './shared/image-slider/image-slider.component';
+import { ApplicationSingleComponent } from './components/application-single/application-single.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ImageSliderComponent } from './shared/image-slider/image-slider.compone
     AppCardComponent,
     CollectionCardComponent,
     ImageSliderComponent,
+    ApplicationSingleComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

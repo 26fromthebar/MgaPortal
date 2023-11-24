@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { IContainer } from 'src/app/types/icontainer';
-import { IContainerChild } from 'src/app/types/icontainer-child';
 import { IListItem } from 'src/app/types/ilist-item';
 import { IPagedDataStreamResult } from 'src/app/types/ipaged-data-stream-result';
 import { IPagedResult } from 'src/app/types/ipaged-result';

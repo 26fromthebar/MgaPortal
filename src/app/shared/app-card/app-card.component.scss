@@ -1,5 +1,17 @@
 .app-card {
   display: grid;
+  padding-block: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--color-white);
+
+    & .app-card__link-wrapper button {
+      background-color: var(--color-white);
+      margin-left: 0.25rem;
+    }
+  }
 
   @media (width > 50em) {
     grid-template-columns: 1fr 1fr;
@@ -7,7 +19,7 @@
   }
 
   &__img-wrapper {
-    height: 15rem;
+    height: min(15rem, 30vh);
     overflow: hidden;
 
     @media (width > 50em) {
@@ -57,7 +69,7 @@
       border: 0;
       background-color: var(--color-bg);
       transform: translateY(50%);
-      transition: margin-left 0.2s linear;
+      transition: margin-left 0.2s linear, background-color 0.2s ease-in-out;
 
       &:hover {
         margin-left: 0.25rem;
