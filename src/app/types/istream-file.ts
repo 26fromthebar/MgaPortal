@@ -3,7 +3,7 @@ export interface IStreamFile {
   filename: string;
   filesize: number;
   mimeType?: string;
-  signature?: string;
+  signature?: string | null;
   thumbnails: {
     largeUrl?: string;
     mediumUrl: string;

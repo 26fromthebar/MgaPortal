@@ -23,6 +23,7 @@
   }
 
   &__hero {
+    padding-block: var(--rds-1) var(--rds-3);
     position: relative;
   }
 
@@ -158,6 +159,10 @@
   right: 0;
   display: flex;
   flex-direction: column;
+
+  @media (width < 65em) {
+    display: none;
+  }
 
   &__share-btn,
   &__zoom-btn {

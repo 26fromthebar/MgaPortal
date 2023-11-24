@@ -94,7 +94,7 @@
 </div>
 
 <section *ngIf="item">
-  <div class="hero">
+  <div class="single">
     <div class="single__top">
       <div class="cont-lg">
         <a routerLink="/collections" class="single__back-btn"
@@ -120,7 +120,7 @@
       ></app-back-button> -->
     </div>
     <div class="single__hero cont-lg">
-      <div class="single__img-wrapper">
+      <!-- <div class="single__img-wrapper">
         <img
           [src]="
             itemFiles.length > 0
@@ -129,7 +129,8 @@
           "
           [alt]="item.title"
         />
-      </div>
+      </div> -->
+      <app-image-slider [slides]="sampleFiles"></app-image-slider>
       <div class="user-actions">
         <button
           class="user-actions__share-btn"

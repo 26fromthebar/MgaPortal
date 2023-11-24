@@ -1,0 +1,27 @@
+<div class="slider">
+  <div
+    *ngFor="let item of slides; index as i"
+    [ngClass]="{ active: currentIndex === i }"
+    class="slider__slide"
+  >
+    <div class="slider__img-wrapper">
+      <img [src]="item.viewUrl" [alt]="item.filename" />
+    </div>
+  </div>
+  <div class="slider__btn-wrapper">
+    <button
+      class="slider__btn--prev"
+      [ngClass]="{ disabled: currentIndex === 0 }"
+      (click)="previousSlide()"
+    >
+      < Προηγούμενο
+    </button>
+    <button
+      class="slider__btn--next"
+      [ngClass]="{ disabled: currentIndex === slides.length - 1 }"
+      (click)="nextSlide()"
+    >
+      Επόμενο >
+    </button>
+  </div>
+</div>
