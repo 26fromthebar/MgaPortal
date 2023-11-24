@@ -1,0 +1,50 @@
+<section class="hero">
+  <div class="hero__top">
+    <div class="cont-lg">
+      <a routerLink="/applications" class="hero__back-btn"
+        ><svg
+          width="28"
+          height="16"
+          viewBox="0 0 28 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M27 9C27.5523 9 28 8.55228 28 8C28 7.44772 27.5523 7 27 7L27 9ZM0.292894 7.29289C-0.0976295 7.68342 -0.0976296 8.31658 0.292894 8.7071L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31945 8.07107 0.928931C7.68054 0.538406 7.04738 0.538406 6.65686 0.92893L0.292894 7.29289ZM27 7L1 7L1 9L27 9L27 7Z"
+            fill="#ab6716"
+          />
+        </svg>
+
+        <span>Πίσω στις εφαρμογές</span></a
+      >
+    </div>
+  </div>
+  <div class="hero__main cont-lg">
+    <div class="hero__content">
+      <h1 class="hero__title">{{ title }}</h1>
+      <p class="hero__description">{{ shortDescription }}</p>
+      <div href="/" class="hero__btn-wrapper">
+        <button>Scroll</button>
+      </div>
+    </div>
+    <div class="hero__img-wrapper">
+      <img [src]="heroImgUrl" alt="title" />
+    </div>
+  </div>
+</section>
+
+<section class="games cont-lg">
+  <h2 class="games__title">{{ sectionTitle }}</h2>
+  <!-- <p class="games__subtitle">{{ sectionSubtitle }}</p> -->
+  <p class="games__details">{{ sectionDetails }}</p>
+  <div class="dec-line m-t-4 m-b-4"></div>
+  <div class="games__list">
+    <app-game-card
+      *ngFor="let game of games"
+      [imgUrl]="game.imgUrl"
+      [title]="game.title"
+      [linkUrl]="game.linkUrl"
+      [linkText]="game.linkText"
+    ></app-game-card>
+  </div>
+</section>
