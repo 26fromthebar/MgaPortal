@@ -176,11 +176,11 @@ export class ItemComponent implements OnInit {
   }
 
   onClickFullscreen() {
-    this.isFullscreen = !this.isFullscreen;
+    // this.isFullscreen = !this.isFullscreen;
   }
 
   onClickSocialShare() {
-    this.isSharing = !this.isSharing;
+    // this.isSharing = !this.isSharing;
   }
 
   shareOnFacebook(): void {

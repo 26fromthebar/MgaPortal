@@ -10,6 +10,7 @@
   </div>
   <div class="slider__btn-wrapper">
     <button
+      *ngIf="slides.length > 1"
       class="slider__btn--prev"
       [ngClass]="{ disabled: currentIndex === 0 }"
       (click)="previousSlide()"
@@ -17,6 +18,7 @@
       < Προηγούμενο
     </button>
     <button
+      *ngIf="slides.length > 1"
       class="slider__btn--next"
       [ngClass]="{ disabled: currentIndex === slides.length - 1 }"
       (click)="nextSlide()"

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validator } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { IContainer } from 'src/app/types/icontainer';
 import { IListItem } from 'src/app/types/ilist-item';
@@ -26,20 +27,60 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   totalPages: number = 1;
   noResults: boolean = false;
   itemTypes: string[] = ['Ζωγραφική', 'Χαρακτική', 'Γλυπτική'];
+
+  private titleSearchUuid: string = 'e3ac7d1c-91bd-4757-a3b6-c66c58760fdd';
+  private creatorSearchUuid: string = '2eea4ba4-0b2a-42b6-8825-5fe52d5e2dfa';
+  private dateSearchUuid: string = 'bac4c081-abdd-45ee-bd32-a78a453e4370';
+  private typeSearchUuid: string = '91d02a67-8592-4e10-af85-2edd0db4fe76';
+
+  titleSearchForm: FormGroup = this.fb.nonNullable.group({
+    searchValue: '',
+    uuid: this.titleSearchUuid,
+  });
+
+  creatorSearchForm: FormGroup = this.fb.nonNullable.group({
+    searchValue: '',
+    uuid: this.creatorSearchUuid,
+  });
+
   searchValues = {
-    value: 'αίγινα',
+    value: '',
     containerTypes: [],
     propertyValueFilters: [
+      {
+        propertyUuid: '',
+        propertyValue: '',
+        logicalOperator: '',
+        operator: '',
+      },
       // {
-      // propertyUuid: '47d41d83-c217-4144-982e-7ab3c51045e2',
-      // propertyValue: '1617',
-      // logicalOperator: 'AND',
-      // operator: 'CONTAINS',
+      //   propertyUuid: 'e3ac7d1c-91bd-4757-a3b6-c66c58760fdd',
+      //   propertyValue: 'ύδρα',
+      //   logicalOperator: 'AND',
+      //   operator: 'CONTAINS',
+      // },
+      // {
+      //   propertyUuid: '2eea4ba4-0b2a-42b6-8825-5fe52d5e2dfa',
+      //   propertyValue: 'μαρί',
+      //   logicalOperator: 'AND',
+      //   operator: 'CONTAINS',
+      // },
+      // {
+      //   propertyUuid: 'bac4c081-abdd-45ee-bd32-a78a453e4370',
+      //   propertyValue: '1967',
+      //   logicalOperator: 'AND',
+      //   operator: 'EQUALS',
+      // },
+      // {
+      //   propertyUuid: '91d02a67-8592-4e10-af85-2edd0db4fe76',
+      //   propertyValue: 'ζωγραφι',
+      //   logicalOperator: 'AND',
+      //   operator: 'CONTAINS',
       // },
     ],
   };
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     // this.fetchParentContainer();
@@ -48,6 +89,11 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     // this.fetchChildrenBySearchValues(this.searchValues);
     // this.fetchDataStreams('87742b59-9bb3-4b82-86c6-ac9e9ffea484');
     this.fetchChildrenWithDetails(this.currentPage - 1, this.pageSize);
+    // this.fetchChildrenWithDetailsBySearvhValues(
+    //   this.currentPage - 1,
+    //   this.pageSize,
+    //   this.searchValues
+    // );
   }
 
   fetchParentContainer() {
@@ -81,11 +127,81 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  fetchChildrenBySearchValues(searchValues: {}) {
-    this.dataService.getChildrenBySearchValues(searchValues).subscribe({
-      next: (response: IPagedResult) => console.log(response),
-      error: (err) => console.log(err),
-    });
+  fetchChildrenBySearchValues(
+    page: number,
+    pageSize: number,
+    searchValues: {}
+  ) {
+    this.dataService
+      .getChildrenBySearchValues(page, pageSize, searchValues)
+      .subscribe({
+        next: (response: IPagedResult) => {
+          console.log(response);
+        },
+        error: (err) => console.log(err),
+      });
+  }
+
+  fetchChildrenWithDetailsBySearvhValues(
+    page: number,
+    pageSize: number,
+    body: {}
+  ) {
+    this.dataService
+      .getChildrenWithDetailsBySearvhValues(page, pageSize, body)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+
+          if (!response || response.childrenDetails.length === 0) {
+            this.noResults = true;
+            return;
+          }
+          const listItems: IListItem[] = [];
+
+          //For each item create a new listItem with the needed properties
+          response.childrenDetails.forEach((item) => {
+            const listItem: IListItem = {
+              title:
+                item.properties?.find(
+                  (prop: IProperty) =>
+                    prop.schemaPropertyUuid ===
+                    'b26d5f89-d42f-4400-8abd-031746597fca'
+                )?.valueAsText ?? '',
+              creator:
+                item.properties?.find(
+                  (prop) =>
+                    prop.schemaPropertyUuid ===
+                    '4c7953e0-47e5-4a28-b55f-7f7808c32553'
+                )?.valueAsText ?? '',
+              type:
+                item.properties?.find(
+                  (prop) =>
+                    prop.schemaPropertyUuid ===
+                    '1d813c78-d2d8-40f3-8a19-5ac777453c4b'
+                )?.valueAsText ?? '',
+              imageUrl: item.coverFile?.viewUrl
+                ? item.coverFile?.viewUrl
+                : '/assets/images/default-image.jpg',
+              thumbnails: {
+                small: '',
+                medium: '',
+                large: '',
+              },
+              uuid: item.uuid,
+            };
+            //Push new listItem to listItems array
+            listItems.push(listItem);
+          });
+
+          //Assign listItems to this items array
+          this.items = listItems;
+          this.currentPage = response.pageData.number + 1;
+          this.totalPages = response.pageData.totalPages;
+          this.updateItemSubLists(this.items, this.columns);
+        },
+        error: (err) => console.log(err),
+      });
   }
 
   fetchDataStreams(id: string) {
@@ -100,7 +216,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
       //In the 'next' callback I have to create a new array with the items having only
       //the properties I need, cause they are many and duplicate now
       next: (response) => {
-        console.log(response);
+        // console.log(response);
 
         if (!response || response.childrenDetails.length === 0) {
           this.noResults = true;
@@ -156,7 +272,11 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   changeSearchValuesAndRefetch(searchValue: string): void {
     this.searchValues.value = searchValue;
     console.log(this.searchValues);
-    this.fetchChildrenBySearchValues(this.searchValues);
+    this.fetchChildrenBySearchValues(
+      this.currentPage - 1,
+      this.pageSize,
+      this.searchValues
+    );
   }
 
   updateItemSubLists(list: any[], step: number) {
@@ -178,6 +298,27 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     this.currentPage = page;
 
     this.fetchChildrenWithDetails(page, this.pageSize);
+  }
+
+  onTitleSearchSubmit() {
+    this.searchValues.propertyValueFilters = [
+      {
+        propertyUuid: this.titleSearchUuid,
+        propertyValue: this.titleSearchForm.value.searchValue,
+        logicalOperator: 'AND',
+        operator: 'CONTAINS',
+      },
+    ];
+
+    this.fetchChildrenWithDetailsBySearvhValues(
+      this.currentPage - 1,
+      this.pageSize,
+      this.searchValues
+    );
+  }
+
+  onSearchSubmit() {
+    // this.searchValues.propertyValueFilters = [{}]
   }
 
   ngOnDestroy(): void {
