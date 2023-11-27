@@ -3,12 +3,17 @@
 
   <div class="collections__filter-buttons">
     <div class="collections__btns-wrapper">
-      <button class="type-btn active" (click)="fetchList(fetchListOptions)">
+      <button
+        [ngClass]="{ active: clickedButtonIndex === 0 }"
+        class="type-btn"
+        (click)="onButtonClick(0, '')"
+      >
         Όλα
       </button>
       <button
-        *ngFor="let type of itemTypes"
-        (click)="changeSearchValuesAndRefetch(type)"
+        *ngFor="let type of itemTypes; let i = index"
+        [ngClass]="{ active: clickedButtonIndex === i + 1 }"
+        (click)="onButtonClick(i + 1, type)"
         class="type-btn"
       >
         {{ type }}
@@ -185,6 +190,8 @@
   ></app-pagination>
 </section>
 
+<div [ngClass]="{ closed: !isFiltersOpen }" class="filters__overlay"></div>
+
 <div [ngClass]="{ closed: !isFiltersOpen }" class="filters">
   <div class="filters__header">
     <svg
@@ -327,5 +334,16 @@
     <button class="filters__clear-btn" (click)="onClearFilters()">
       Καθαρισμός φίλτρων
     </button>
+
+    <label for="start">Start date:</label>
+
+    <input
+      type="date"
+      id="start"
+      name="date"
+      value="2018-07-22"
+      min="2018-01-01"
+      max="2018-12-31"
+    />
   </div>
 </div>

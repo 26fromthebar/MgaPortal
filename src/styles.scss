@@ -527,4 +527,17 @@ button {
   &.closed {
     transform: translateX(100%);
   }
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+
+    background-color: var(--color-black);
+    opacity: 0.5;
+    transition: transform 0.2s ease-in-out;
+
+    &.closed {
+      display: none;
+    }
+  }
 }

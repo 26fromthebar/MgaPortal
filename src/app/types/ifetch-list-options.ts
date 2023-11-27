@@ -6,7 +6,7 @@ export interface IFetchListOptions {
   };
   searchValues: {
     value: string;
-    containerTypes: [];
+    containerTypes: string[];
     propertyValueFilters: [
       {
         propertyUuid: string;

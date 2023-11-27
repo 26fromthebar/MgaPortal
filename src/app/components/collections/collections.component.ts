@@ -32,11 +32,9 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     searchValues: null,
   };
   columns: number = 4;
-  // pageSize: number = 20;
-  // currentPage: number = 1;
-  // totalPages: number = 1;
   noResults: boolean = false;
-  itemTypes: string[] = ['Αίγι', 'Χαρακτική', 'Γλυπτική'];
+  itemTypes: string[] = ['ζωγραφική', 'Χαρακτική', 'Γλυπτική'];
+  clickedButtonIndex: number = 0;
 
   isFiltersOpen: boolean = false;
 
@@ -97,12 +95,6 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   constructor(private dataService: DataService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // this.dataService.fetchListOptions$.subscribe({
-    //   next: (data) => {
-    //     this.fetchListOptions = data;
-    //     console.log(this.fetchListOptions);
-    //   },
-    // });
     this.updateListOptionsAndFetch();
     // this.fetchParentContainer();
     // this.fetchContainer('87742b59-9bb3-4b82-86c6-ac9e9ffea484');
@@ -118,60 +110,26 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   }
 
   // Not used
-  fetchParentContainer() {
-    this.dataService.getParentContainer().subscribe({
-      next: (response: IContainer) => console.log(response),
-      error: (err) => console.log(err),
-    });
-  }
-
-  // Used for fetching single item data
-  fetchContainer(id: string) {
-    this.dataService.getContainer(id).subscribe({
-      next: (response: IContainer) => console.log(response),
-      error: (err) => console.log(err),
-    });
-  }
-
-  // Not used
-  // fetchChildren(page: number, pageSize: number) {
-  //   this.dataService.getChildren(page, pageSize).subscribe({
-  //     next: (response: IPagedResult) => {
-  //       console.log(response);
-  //       // this.items = response.content;
-  //       // const itemList1 = this.createSubList(this.items, 4, 0);
-  //       // console.log(itemList1);
-  //       // this.updateItemSubLists(this.items, this.cols);
-  //       // console.log(this.itemSubList1);
-  //       // console.log(this.itemSubList2);
-  //       // console.log(this.itemSubList3);
-  //       // console.log(this.itemSubList4);
-  //     },
+  // fetchParentContainer() {
+  //   this.dataService.getParentContainer().subscribe({
+  //     next: (response: IContainer) => console.log(response),
   //     error: (err) => console.log(err),
   //   });
   // }
 
-  fetchDataStreams(id: string) {
-    this.dataService.getDataStreams(id).subscribe({
-      next: (response: IPagedDataStreamResult) => console.log(response),
-      error: (err) => console.log(err),
-    });
-  }
+  // Used for fetching single item data
+  // fetchContainer(id: string) {
+  //   this.dataService.getContainer(id).subscribe({
+  //     next: (response: IContainer) => console.log(response),
+  //     error: (err) => console.log(err),
+  //   });
+  // }
 
-  // Not used
-  // fetchChildrenBySearchValues(
-  //   page: number,
-  //   pageSize: number,
-  //   searchValues: {}
-  // ) {
-  //   this.dataService
-  //     .getChildrenBySearchValues(page, pageSize, searchValues)
-  //     .subscribe({
-  //       next: (response: IPagedResult) => {
-  //         console.log(response);
-  //       },
-  //       error: (err) => console.log(err),
-  //     });
+  // fetchDataStreams(id: string) {
+  //   this.dataService.getDataStreams(id).subscribe({
+  //     next: (response: IPagedDataStreamResult) => console.log(response),
+  //     error: (err) => console.log(err),
+  //   });
   // }
 
   fetchList(options: IFetchListOptions) {
@@ -234,152 +192,20 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  // fetchChildrenWithDetailsBySearvhValues(
-  //   page: number,
-  //   pageSize: number,
-  //   body: {}
-  // ) {
-  //   this.dataService
-  //     .getChildrenWithDetailsBySearchValues(page, pageSize, body)
-  //     .subscribe({
-  //       next: (response) => {
-  //         console.log(response);
-
-  //         if (!response || response.childrenDetails.length === 0) {
-  //           this.noResults = true;
-  //           return;
-  //         }
-  //         const listItems: IListItem[] = [];
-
-  //         //For each item create a new listItem with the needed properties
-  //         response.childrenDetails.forEach((item) => {
-  //           const listItem: IListItem = {
-  //             title:
-  //               item.properties?.find(
-  //                 (prop: IProperty) =>
-  //                   prop.schemaPropertyUuid ===
-  //                   'b26d5f89-d42f-4400-8abd-031746597fca'
-  //               )?.valueAsText ?? '',
-  //             creator:
-  //               item.properties?.find(
-  //                 (prop) =>
-  //                   prop.schemaPropertyUuid ===
-  //                   '4c7953e0-47e5-4a28-b55f-7f7808c32553'
-  //               )?.valueAsText ?? '',
-  //             type:
-  //               item.properties?.find(
-  //                 (prop) =>
-  //                   prop.schemaPropertyUuid ===
-  //                   '1d813c78-d2d8-40f3-8a19-5ac777453c4b'
-  //               )?.valueAsText ?? '',
-  //             imageUrl: item.coverFile?.viewUrl
-  //               ? item.coverFile?.viewUrl
-  //               : '/assets/images/default-image.jpg',
-  //             thumbnails: {
-  //               small: '',
-  //               medium: '',
-  //               large: '',
-  //             },
-  //             uuid: item.uuid,
-  //           };
-  //           //Push new listItem to listItems array
-  //           listItems.push(listItem);
-  //         });
-
-  //         //Assign listItems to this items array
-  //         this.items = listItems;
-  //         this.currentPage = response.pageData.number + 1;
-  //         this.totalPages = response.pageData.totalPages;
-  //         this.updateItemSubLists(this.items, this.columns);
-  //       },
-  //       error: (err) => console.log(err),
-  //     });
-  // }
-
-  // fetchChildrenWithDetails(page: number, pageSize: number) {
-  //   this.dataService.getChildrenWithDetails(page, pageSize).subscribe({
-  //     //In the 'next' callback I have to create a new array with the items having only
-  //     //the properties I need, cause they are many and duplicate now
-  //     next: (response) => {
-  //       // console.log(response);
-
-  //       if (!response || response.childrenDetails.length === 0) {
-  //         this.noResults = true;
-  //         return;
-  //       }
-  //       const listItems: IListItem[] = [];
-
-  //       //For each item create a new listItem with the needed properties
-  //       response.childrenDetails.forEach((item) => {
-  //         const listItem: IListItem = {
-  //           title:
-  //             item.properties?.find(
-  //               (prop: IProperty) =>
-  //                 prop.schemaPropertyUuid ===
-  //                 'b26d5f89-d42f-4400-8abd-031746597fca'
-  //             )?.valueAsText ?? '',
-  //           creator:
-  //             item.properties?.find(
-  //               (prop) =>
-  //                 prop.schemaPropertyUuid ===
-  //                 '4c7953e0-47e5-4a28-b55f-7f7808c32553'
-  //             )?.valueAsText ?? '',
-  //           type:
-  //             item.properties?.find(
-  //               (prop) =>
-  //                 prop.schemaPropertyUuid ===
-  //                 '1d813c78-d2d8-40f3-8a19-5ac777453c4b'
-  //             )?.valueAsText ?? '',
-  //           imageUrl: item.coverFile?.viewUrl
-  //             ? item.coverFile?.viewUrl
-  //             : '/assets/images/default-image.jpg',
-  //           thumbnails: {
-  //             small: '',
-  //             medium: '',
-  //             large: '',
-  //           },
-  //           uuid: item.uuid,
-  //         };
-  //         //Push new listItem to listItems array
-  //         listItems.push(listItem);
-  //       });
-
-  //       //Assign listItems to this items array
-  //       this.items = listItems;
-  //       this.currentPage = response.pageData.number + 1;
-  //       this.totalPages = response.pageData.totalPages;
-  //       this.updateItemSubLists(this.items, this.columns);
-  //     },
-  //     error: (err) => console.log(err),
-  //   });
-  // }
-
-  // changeSearchValuesAndRefetchList(searchValue: string) {
-  //   // if(this.fetchListOptions.searchValues) {
-  //   //   this.fetchListOptions.searchValues.value = 'sdahdfkj';
-  //   // }
-  //   this.dataService.setFetchListOptions({
-
-  //   })
-  // }
-
   changeSearchValuesAndRefetch(searchValue: string): void {
-    if (this.dataService.fetchListOptions.searchValues) {
-      this.dataService.fetchListOptions.searchValues.value = searchValue;
-    } else {
-      this.dataService.fetchListOptions.searchValues = {
-        value: searchValue,
-        containerTypes: [],
-        propertyValueFilters: [
-          {
-            propertyUuid: '',
-            propertyValue: '',
-            logicalOperator: '',
-            operator: '',
-          },
-        ],
-      };
-    }
+    this.dataService.fetchListOptions.searchValues = {
+      value: '',
+      containerTypes: ['4e809a18-e3bd-4f5c-92fe-fba10c7addcc'],
+      propertyValueFilters: [
+        {
+          propertyUuid: this.typeSearchUuid,
+          propertyValue: searchValue.toLowerCase(),
+          logicalOperator: 'AND',
+          operator: 'EQUALS',
+        },
+      ],
+    };
+    console.log(this.dataService.fetchListOptions);
     this.updateListOptionsAndFetch();
   }
 
@@ -415,11 +241,11 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     // );
     this.dataService.fetchListOptions.searchValues = {
       value: '',
-      containerTypes: [],
+      containerTypes: ['4e809a18-e3bd-4f5c-92fe-fba10c7addcc'],
       propertyValueFilters: [
         {
           propertyUuid: this.titleSearchForm.value.uuid,
-          propertyValue: this.titleSearchForm.value.searchValue,
+          propertyValue: this.titleSearchForm.value.searchValue.toLowerCase(),
           logicalOperator: 'AND',
           operator: 'CONTAINS',
         },
@@ -437,7 +263,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
       propertyValueFilters: [
         {
           propertyUuid: this.creatorSearchForm.value.uuid,
-          propertyValue: this.creatorSearchForm.value.searchValue,
+          propertyValue: this.creatorSearchForm.value.searchValue.toLowerCase(),
           logicalOperator: 'AND',
           operator: 'CONTAINS',
         },
@@ -488,6 +314,27 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     this.fetchListOptions = this.dataService.fetchListOptions;
     console.log(this.dataService.fetchListOptions);
     this.fetchList(this.dataService.fetchListOptions);
+  }
+
+  // Function to handle button click
+  onButtonClick(index: number, type: string) {
+    this.clickedButtonIndex = index;
+    if (this.clickedButtonIndex === 0) {
+      console.log('Index 0');
+
+      this.dataService.fetchListOptions = {
+        pagination: {
+          currentPage: 0,
+          pageSize: 24,
+          totalPages: 1,
+        },
+        searchValues: null,
+      };
+      this.updateListOptionsAndFetch();
+    } else {
+      console.log('Index > 0');
+      this.changeSearchValuesAndRefetch(type);
+    }
   }
 
   ngOnDestroy(): void {
