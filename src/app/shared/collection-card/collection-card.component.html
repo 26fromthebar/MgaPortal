@@ -1,7 +1,7 @@
-<a [routerLink]="urlLink" class="collection-card">
-  <div class="collection-card__img-wrapper">
+<div class="collection-card">
+  <a [routerLink]="urlLink" class="collection-card__img-wrapper">
     <img [src]="imgUrl" [alt]="title" />
-  </div>
+  </a>
   <div class="collection-card__content">
     <p class="collection-card__title">
       {{ title }}
@@ -9,6 +9,8 @@
     <p class="collection-card__creator">
       {{ creator }}
     </p>
-    <button class="collection-card__btn">Περισσότερα</button>
+    <button [routerLink]="urlLink" class="collection-card__btn">
+      Περισσότερα
+    </button>
   </div>
-</a>
+</div>

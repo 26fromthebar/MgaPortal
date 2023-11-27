@@ -21,6 +21,7 @@ import { ImageSliderComponent } from './shared/image-slider/image-slider.compone
 import { ApplicationSingleComponent } from './components/application-single/application-single.component';
 import { GamesComponent } from './components/games/games.component';
 import { GameCardComponent } from './shared/game-card/game-card.component';
+import { FiltersComponent } from './shared/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { GameCardComponent } from './shared/game-card/game-card.component';
     ApplicationSingleComponent,
     GamesComponent,
     GameCardComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,

@@ -40,10 +40,10 @@
     </svg>
   </button>
   <ul class="pagination__list">
-    <li *ngIf="currentPage === totalPages">
+    <li *ngIf="currentPage === totalPages && totalPages > 3">
       <button class="pagination__btn" (click)="goToPage(1)">1</button>
     </li>
-    <li *ngIf="currentPage === totalPages">
+    <li *ngIf="currentPage === totalPages && totalPages > 3">
       <div class="pagination__dots">
         <svg
           width="13"
@@ -74,7 +74,7 @@
         {{ currentPage + 1 }}
       </button>
     </li>
-    <li *ngIf="currentPage === 1">
+    <li *ngIf="currentPage === 1 && totalPages > 3">
       <div class="pagination__dots">
         <svg
           width="13"
@@ -90,7 +90,7 @@
         </svg>
       </div>
     </li>
-    <li *ngIf="currentPage === 1">
+    <li *ngIf="currentPage === 1 && totalPages > 3">
       <button class="pagination__btn" (click)="goToPage(totalPages)">
         {{ totalPages }}
       </button>

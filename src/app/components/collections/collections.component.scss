@@ -1,6 +1,13 @@
 .collections {
-  &__btns-wrapper {
+  &__filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
     margin-bottom: 4rem;
+  }
+
+  &__btns-wrapper {
   }
 
   &__content {
@@ -66,21 +73,21 @@
   }
 }
 
-.search {
-  margin-bottom: 3rem;
+// .search {
+//   margin-bottom: 3rem;
 
-  &__form {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+//   &__form {
+//     display: flex;
+//     align-items: center;
+//     gap: 1rem;
+//   }
 
-  &__input {
-    padding: 0.5rem;
-    color: var(--color-text);
-  }
+//   &__input {
+//     padding: 0.5rem;
+//     color: var(--color-text);
+//   }
 
-  &__submit-btn {
-    padding: 0.5rem 2rem;
-  }
-}
+//   &__submit-btn {
+//     padding: 0.5rem 2rem;
+//   }
+// }

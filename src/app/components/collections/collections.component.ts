@@ -38,10 +38,14 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   noResults: boolean = false;
   itemTypes: string[] = ['Αίγι', 'Χαρακτική', 'Γλυπτική'];
 
+  isFiltersOpen: boolean = false;
+
   private titleSearchUuid: string = 'e3ac7d1c-91bd-4757-a3b6-c66c58760fdd';
   private creatorSearchUuid: string = '2eea4ba4-0b2a-42b6-8825-5fe52d5e2dfa';
   private dateSearchUuid: string = 'bac4c081-abdd-45ee-bd32-a78a453e4370';
   private typeSearchUuid: string = '91d02a67-8592-4e10-af85-2edd0db4fe76';
+
+  creatorSearchValue: string = '';
 
   titleSearchForm: FormGroup = this.fb.nonNullable.group({
     searchValue: '',
@@ -173,7 +177,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   fetchList(options: IFetchListOptions) {
     this.dataService.getListData(options).subscribe({
       next: (response) => {
-        console.log('Fetchlist: ', response);
+        // console.log('Fetchlist: ', response);
 
         if (!response || response.childrenDetails.length === 0) {
           this.noResults = true;
@@ -218,7 +222,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
         //Assign listItems to this items array
         this.items = listItems;
-        console.log(this.dataService.fetchListOptions);
+        // console.log(this.dataService.fetchListOptions);
         this.dataService.fetchListOptions.pagination.currentPage =
           response.pageData.number;
         this.dataService.fetchListOptions.pagination.totalPages =
@@ -405,23 +409,85 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   }
 
   onTitleSearchSubmit() {
-    // this.searchValues.propertyValueFilters = [
-    //   {
-    //     propertyUuid: this.titleSearchUuid,
-    //     propertyValue: this.titleSearchForm.value.searchValue,
-    //     logicalOperator: 'AND',
-    //     operator: 'CONTAINS',
-    //   },
-    // ];
-    // this.fetchChildrenWithDetailsBySearvhValues(
-    //   this.currentPage - 1,
-    //   this.pageSize,
-    //   this.searchValues
+    // console.log(
+    //   this.titleSearchForm.value.searchValue,
+    //   this.titleSearchForm.value.uuid
     // );
+    this.dataService.fetchListOptions.searchValues = {
+      value: '',
+      containerTypes: [],
+      propertyValueFilters: [
+        {
+          propertyUuid: this.titleSearchForm.value.uuid,
+          propertyValue: this.titleSearchForm.value.searchValue,
+          logicalOperator: 'AND',
+          operator: 'CONTAINS',
+        },
+      ],
+    };
+
+    console.log(this.dataService.fetchListOptions);
+    this.fetchList(this.dataService.fetchListOptions);
+  }
+
+  onCreatorSearchSubmit() {
+    this.dataService.fetchListOptions.searchValues = {
+      value: '',
+      containerTypes: [],
+      propertyValueFilters: [
+        {
+          propertyUuid: this.creatorSearchForm.value.uuid,
+          propertyValue: this.creatorSearchForm.value.searchValue,
+          logicalOperator: 'AND',
+          operator: 'CONTAINS',
+        },
+      ],
+    };
+
+    console.log(this.dataService.fetchListOptions);
+    this.fetchList(this.dataService.fetchListOptions);
   }
 
   onSearchSubmit() {
-    // this.searchValues.propertyValueFilters = [{}]
+    this.dataService.fetchListOptions.searchValues = {
+      value: '',
+      containerTypes: [],
+      propertyValueFilters: [
+        {
+          propertyUuid: this.titleSearchForm.value.uuid,
+          propertyValue: this.titleSearchForm.value.searchValue,
+          logicalOperator: 'AND',
+          operator: 'CONTAINS',
+        },
+      ],
+    };
+
+    console.log(this.dataService.fetchListOptions);
+    this.fetchList(this.dataService.fetchListOptions);
+  }
+
+  toggleFilters() {
+    this.isFiltersOpen = !this.isFiltersOpen;
+  }
+
+  onClearFilters() {
+    this.titleSearchForm.value.searchValue = '';
+    this.creatorSearchForm.get('searchValue')?.setValue('');
+
+    console.log(this.creatorSearchValue);
+
+    this.dataService.fetchListOptions = {
+      pagination: {
+        currentPage: 0,
+        pageSize: 24,
+        totalPages: 1,
+      },
+      searchValues: null,
+    };
+    console.log(this.dataService.fetchListOptions);
+    this.fetchListOptions = this.dataService.fetchListOptions;
+    console.log(this.dataService.fetchListOptions);
+    this.fetchList(this.dataService.fetchListOptions);
   }
 
   ngOnDestroy(): void {

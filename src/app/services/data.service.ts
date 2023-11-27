@@ -68,8 +68,8 @@ export class DataService {
     //     {
     //       propertyUuid: '',
     //       propertyValue: '',
-    //       logicalOperator: '',
-    //       operator: '',
+    //       logicalOperator: 'AND',
+    //       operator: 'CONTAINS',
     //     },
     //   ],
     // },
