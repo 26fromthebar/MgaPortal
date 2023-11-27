@@ -25,16 +25,16 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
   fetchListOptions: IFetchListOptions = {
     pagination: {
-      currentPage: 1,
+      currentPage: 0,
       pageSize: 16,
       totalPages: 1,
     },
     searchValues: null,
   };
   columns: number = 4;
-  pageSize: number = 20;
-  currentPage: number = 1;
-  totalPages: number = 1;
+  // pageSize: number = 20;
+  // currentPage: number = 1;
+  // totalPages: number = 1;
   noResults: boolean = false;
   itemTypes: string[] = ['Αίγι', 'Χαρακτική', 'Γλυπτική'];
 
@@ -173,7 +173,8 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   fetchList(options: IFetchListOptions) {
     this.dataService.getListData(options).subscribe({
       next: (response) => {
-        console.log(response);
+        console.log('Fetchlist: ', response);
+
         if (!response || response.childrenDetails.length === 0) {
           this.noResults = true;
           return;
@@ -217,13 +218,13 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
         //Assign listItems to this items array
         this.items = listItems;
-
+        console.log(this.dataService.fetchListOptions);
         this.dataService.fetchListOptions.pagination.currentPage =
-          response.pageData.number + 1;
+          response.pageData.number;
         this.dataService.fetchListOptions.pagination.totalPages =
           response.pageData.totalPages;
         this.updateItemSubLists(this.items, this.columns);
-        console.log(this.fetchListOptions);
+        // console.log(this.fetchListOptions);
       },
       error: (err) => console.log(err),
     });

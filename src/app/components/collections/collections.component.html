@@ -106,7 +106,7 @@
 
   <app-pagination
     *ngIf="fetchListOptions.pagination.totalPages > 1"
-    [currentPage]="fetchListOptions.pagination.currentPage"
+    [currentPage]="fetchListOptions.pagination.currentPage + 1"
     [totalPages]="fetchListOptions.pagination.totalPages"
     (pageChange)="onPageChange($event)"
   ></app-pagination>
