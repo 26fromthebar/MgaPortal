@@ -2,10 +2,7 @@
   <h1 class="title--primary">{{ title }}</h1>
 
   <div class="collections__btns-wrapper">
-    <button
-      class="type-btn active"
-      (click)="fetchChildren(currentPage, pageSize)"
-    >
+    <button class="type-btn active" (click)="fetchList(fetchListOptions)">
       Όλα
     </button>
     <button
@@ -108,9 +105,9 @@
   </div>
 
   <app-pagination
-    *ngIf="totalPages > 1"
-    [currentPage]="currentPage"
-    [totalPages]="totalPages"
+    *ngIf="fetchListOptions.pagination.totalPages > 1"
+    [currentPage]="fetchListOptions.pagination.currentPage"
+    [totalPages]="fetchListOptions.pagination.totalPages"
     (pageChange)="onPageChange($event)"
   ></app-pagination>
 </section>

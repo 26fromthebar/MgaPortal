@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  BehaviorSubject,
   Observable,
   concat,
   forkJoin,
@@ -15,6 +16,7 @@ import { IContainer } from '../types/icontainer';
 import { IPagedResult } from '../types/ipaged-result';
 import { IContainerChild } from '../types/icontainer-child';
 import { IPagedDataStreamResult } from '../types/ipaged-data-stream-result';
+import { IFetchListOptions } from '../types/ifetch-list-options';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +32,54 @@ export class DataService {
   };
   private headers = new HttpHeaders(this.headersOptions);
 
+  // private fetchListOptionsSubject = new BehaviorSubject<IFetchListOptions>({
+  //   pagination: {
+  //     currentPage: 3,
+  //     pageSize: 24,
+  //     totalPages: 1,
+  //   },
+  //   searchValues: null,
+  //   // searchValues: {
+  //   //   value: '',
+  //   //   containerTypes: [],
+  //   //   propertyValueFilters: [
+  //   //     {
+  //   //       propertyUuid: '',
+  //   //       propertyValue: '',
+  //   //       logicalOperator: '',
+  //   //       operator: '',
+  //   //     },
+  //   //   ],
+  //   // },
+  // });
+  // fetchListOptions$ = this.fetchListOptionsSubject.asObservable();
+
+  fetchListOptions: IFetchListOptions = {
+    pagination: {
+      currentPage: 0,
+      pageSize: 24,
+      totalPages: 1,
+    },
+    searchValues: null,
+    // searchValues: {
+    //   value: '',
+    //   containerTypes: [],
+    //   propertyValueFilters: [
+    //     {
+    //       propertyUuid: '',
+    //       propertyValue: '',
+    //       logicalOperator: '',
+    //       operator: '',
+    //     },
+    //   ],
+    // },
+  };
+
   constructor(private http: HttpClient) {}
+
+  // setFetchListOptions(data: IFetchListOptions) {
+  //   this.fetchListOptionsSubject.next(data);
+  // }
 
   //Get parent container
   getParentContainer(): Observable<IContainer> {
@@ -63,13 +112,7 @@ export class DataService {
     return this.http.post<IPagedResult>(url, body, { headers: this.headers });
   }
 
-  // getChildrenWithDetailsBySearchValues(page: number, pageSize: number  ,body: {}): Observable<{pageData: IPagedResult;
-  //   childrenDetails: IContainer[];}> {
-  //   const url = `${this.apiUrl}/public/containers/search`;
-  //   return this.http.post<IPagedResult>(url, body, { headers: this.headers });
-  // }
-
-  //Get child by id
+  //Get child stream data by id
   getDataStreams(id: string): Observable<IPagedDataStreamResult> {
     const url = `${this.apiUrl}/public/containers/${id}/datastreams`;
 
@@ -80,19 +123,32 @@ export class DataService {
     );
   }
 
-  getChildrenWithDetailsBySearvhValues(
+  getListData(options: IFetchListOptions): Observable<{
+    pageData: IPagedResult;
+    childrenDetails: IContainer[];
+  }> {
+    if (options.searchValues === null) {
+      return this.getChildrenWithDetails(
+        options.pagination.currentPage,
+        options.pagination.pageSize
+      );
+    } else {
+      return this.getChildrenWithDetailsBySearchValues(
+        options.pagination.currentPage,
+        options.pagination.pageSize,
+        options.searchValues
+      );
+    }
+  }
+
+  getChildrenWithDetails(
     page: number,
-    pageSize: number,
-    body: {}
+    pageSize: number
   ): Observable<{
     pageData: IPagedResult;
     childrenDetails: IContainer[];
   }> {
-    const sharedPageData = this.getChildrenBySearchValues(
-      page,
-      pageSize,
-      body
-    ).pipe(
+    const sharedPageData = this.getChildren(page, pageSize).pipe(
       // tap((data: IPagedResult) => console.log(data)),
       shareReplay(1) // Share the result and replay it to new subscribers
     );
@@ -114,14 +170,19 @@ export class DataService {
     });
   }
 
-  getChildrenWithDetails(
+  getChildrenWithDetailsBySearchValues(
     page: number,
-    pageSize: number
+    pageSize: number,
+    body: {}
   ): Observable<{
     pageData: IPagedResult;
     childrenDetails: IContainer[];
   }> {
-    const sharedPageData = this.getChildren(page, pageSize).pipe(
+    const sharedPageData = this.getChildrenBySearchValues(
+      page,
+      pageSize,
+      body
+    ).pipe(
       // tap((data: IPagedResult) => console.log(data)),
       shareReplay(1) // Share the result and replay it to new subscribers
     );
