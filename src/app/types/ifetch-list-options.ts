@@ -7,13 +7,11 @@ export interface IFetchListOptions {
   searchValues: {
     value: string;
     containerTypes: string[];
-    propertyValueFilters: [
-      {
-        propertyUuid: string;
-        propertyValue: string;
-        logicalOperator: string;
-        operator: string;
-      }
-    ];
+    propertyValueFilters: {
+      propertyUuid: string;
+      propertyValue: string;
+      logicalOperator: string;
+      operator: string;
+    }[];
   } | null;
 }

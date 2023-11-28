@@ -334,16 +334,344 @@
     <button class="filters__clear-btn" (click)="onClearFilters()">
       Καθαρισμός φίλτρων
     </button>
-
-    <label for="start">Start date:</label>
-
-    <input
-      type="date"
-      id="start"
-      name="date"
-      value="2018-07-22"
-      min="2018-01-01"
-      max="2018-12-31"
-    />
   </div>
 </div>
+
+<!-- <section class="section collections cont-lg">
+  <h1 class="title--primary">{{ title }}</h1>
+
+   <div class="collections__filter-buttons">
+    <div class="collections__btns-wrapper">
+      <button
+        [ngClass]="{ active: clickedButtonIndex === 0 }"
+        class="type-btn"
+        (click)="onButtonClick(0, '')"
+      >
+        Όλα
+      </button>
+      <button
+        *ngFor="let type of itemTypes; let i = index"
+        [ngClass]="{ active: clickedButtonIndex === i + 1 }"
+        (click)="onButtonClick(i + 1, type)"
+        class="type-btn"
+      >
+        {{ type }}
+      </button>
+    </div>
+
+    <button class="filter-btn" (click)="toggleFilters()">
+      <svg
+        width="24"
+        height="21"
+        viewBox="0 0 24 21"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 2.28125C0.447715 2.28125 0 2.72897 0 3.28125C0 3.83353 0.447715 4.28125 1 4.28125V2.28125ZM1 4.28125H11.5V2.28125H1V4.28125Z"
+          fill="white"
+        />
+        <path
+          d="M22.6562 4.28125C23.2085 4.28125 23.6562 3.83353 23.6562 3.28125C23.6562 2.72897 23.2085 2.28125 22.6562 2.28125V4.28125ZM17.4062 4.28125H22.6562V2.28125H17.4062V4.28125Z"
+          fill="white"
+        />
+        <circle
+          cx="14.7812"
+          cy="3.28125"
+          r="2.28125"
+          stroke="white"
+          stroke-width="2"
+        />
+        <path
+          d="M1 16.7188C0.447715 16.7188 0 17.1665 0 17.7188C0 18.271 0.447715 18.7188 1 18.7188V16.7188ZM1 18.7188H11.5V16.7188H1V18.7188Z"
+          fill="white"
+        />
+        <path
+          d="M22.6562 18.7188C23.2085 18.7188 23.6562 18.271 23.6562 17.7188C23.6562 17.1665 23.2085 16.7188 22.6562 16.7188V18.7188ZM17.4062 18.7188H22.6562V16.7188H17.4062V18.7188Z"
+          fill="white"
+        />
+        <circle
+          cx="14.7812"
+          cy="17.7188"
+          r="2.28125"
+          stroke="white"
+          stroke-width="2"
+        />
+        <path
+          d="M22.6563 11.5C23.2085 11.5 23.6562 11.0523 23.6563 10.5C23.6562 9.94771 23.2085 9.5 22.6562 9.5L22.6563 11.5ZM22.6562 9.5L12.8125 9.5L12.8125 11.5L22.6563 11.5L22.6562 9.5Z"
+          fill="white"
+        />
+        <path
+          d="M1 9.5C0.447715 9.5 4.82823e-08 9.94771 0 10.5C-4.82823e-08 11.0523 0.447715 11.5 1 11.5L1 9.5ZM6.25 9.5L1 9.5L1 11.5L6.25 11.5L6.25 9.5Z"
+          fill="white"
+        />
+        <circle
+          cx="9.53125"
+          cy="10.5"
+          r="2.28125"
+          transform="rotate(-180 9.53125 10.5)"
+          stroke="white"
+          stroke-width="2"
+        />
+      </svg>
+
+      <svg
+        width="24"
+        height="21"
+        viewBox="0 0 24 21"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22.6562 18.7188C23.2085 18.7188 23.6562 18.271 23.6562 17.7188C23.6563 17.1665 23.2085 16.7188 22.6563 16.7188L22.6562 18.7188ZM22.6563 16.7188L12.1563 16.7187L12.1562 18.7187L22.6562 18.7188L22.6563 16.7188Z"
+          fill="white"
+        />
+        <path
+          d="M1 16.7187C0.447715 16.7187 4.82823e-08 17.1665 0 17.7187C-4.82823e-08 18.271 0.447715 18.7187 1 18.7187L1 16.7187ZM6.25 16.7188L1 16.7187L1 18.7187L6.25 18.7188L6.25 16.7188Z"
+          fill="white"
+        />
+        <circle
+          cx="8.875"
+          cy="17.7188"
+          r="2.28125"
+          transform="rotate(-180 8.875 17.7188)"
+          stroke="white"
+          stroke-width="2"
+        />
+        <path
+          d="M22.6562 4.28125C23.2085 4.28125 23.6562 3.83353 23.6562 3.28125C23.6563 2.72897 23.2085 2.28125 22.6563 2.28125L22.6562 4.28125ZM22.6563 2.28125L12.1563 2.28125L12.1562 4.28125L22.6562 4.28125L22.6563 2.28125Z"
+          fill="white"
+        />
+        <path
+          d="M1 2.28125C0.447715 2.28125 4.82823e-08 2.72896 0 3.28125C-4.82823e-08 3.83353 0.447715 4.28125 1 4.28125L1 2.28125ZM6.25 2.28125L1 2.28125L1 4.28125L6.25 4.28125L6.25 2.28125Z"
+          fill="white"
+        />
+        <circle
+          cx="8.875"
+          cy="3.28125"
+          r="2.28125"
+          transform="rotate(-180 8.875 3.28125)"
+          stroke="white"
+          stroke-width="2"
+        />
+        <path
+          d="M1 9.5C0.447715 9.5 9.65644e-08 9.94772 0 10.5C-3.69601e-08 11.0523 0.447715 11.5 1 11.5L1 9.5ZM1 11.5L10.8437 11.5L10.8438 9.5L1 9.5L1 11.5Z"
+          fill="white"
+        />
+        <path
+          d="M22.6562 11.5C23.2085 11.5 23.6562 11.0523 23.6562 10.5C23.6563 9.94772 23.2085 9.5 22.6563 9.5L22.6562 11.5ZM17.4062 11.5L22.6562 11.5L22.6563 9.5L17.4063 9.5L17.4062 11.5Z"
+          fill="white"
+        />
+        <circle
+          cx="14.125"
+          cy="10.5"
+          r="2.28125"
+          stroke="white"
+          stroke-width="2"
+        />
+      </svg>
+
+      <span>Φίλτρα</span>
+    </button>
+  </div>
+
+  <div *ngIf="!noResults" class="collections__content">
+    <div class="collections__content-col--1">
+      <app-collection-card
+        *ngFor="let item of itemSubList1"
+        [urlLink]="['/collections', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
+    </div>
+
+    <div class="collections__content-col--2">
+      <app-collection-card
+        *ngFor="let item of itemSubList2"
+        [urlLink]="['/collections', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
+    </div>
+    <div class="collections__content-col--3">
+      <app-collection-card
+        *ngFor="let item of itemSubList3"
+        [urlLink]="['/collections', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
+    </div>
+    <div class="collections__content-col--4">
+      <app-collection-card
+        *ngFor="let item of itemSubList4"
+        [urlLink]="['/collections', item.uuid]"
+        [imgUrl]="item.imageUrl"
+        [title]="item.title"
+        [creator]="item.creator"
+      ></app-collection-card>
+    </div>
+  </div>
+
+  <div *ngIf="noResults" class="collections__no-results">
+    <p class="collections__no-results-text">
+      Δεν βρέθηκαν αποτελέσματα για την συγκεκριμένη αναζήτηση
+    </p>
+  </div>
+
+  <app-pagination
+    *ngIf="fetchListOptions.pagination.totalPages > 1"
+    [currentPage]="fetchListOptions.pagination.currentPage + 1"
+    [totalPages]="fetchListOptions.pagination.totalPages"
+    (pageChange)="onPageChange($event)"
+  ></app-pagination>
+</section>
+
+<div [ngClass]="{ closed: !isFiltersOpen }" class="filters__overlay"></div>
+
+<div [ngClass]="{ closed: !isFiltersOpen }" class="filters">
+  <div class="filters__header">
+    <svg
+      width="24"
+      height="21"
+      viewBox="0 0 24 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 2.28125C0.447715 2.28125 0 2.72897 0 3.28125C0 3.83353 0.447715 4.28125 1 4.28125V2.28125ZM1 4.28125H11.5V2.28125H1V4.28125Z"
+        fill="white"
+      />
+      <path
+        d="M22.6562 4.28125C23.2085 4.28125 23.6562 3.83353 23.6562 3.28125C23.6562 2.72897 23.2085 2.28125 22.6562 2.28125V4.28125ZM17.4062 4.28125H22.6562V2.28125H17.4062V4.28125Z"
+        fill="white"
+      />
+      <circle
+        cx="14.7812"
+        cy="3.28125"
+        r="2.28125"
+        stroke="white"
+        stroke-width="2"
+      />
+      <path
+        d="M1 16.7188C0.447715 16.7188 0 17.1665 0 17.7188C0 18.271 0.447715 18.7188 1 18.7188V16.7188ZM1 18.7188H11.5V16.7188H1V18.7188Z"
+        fill="white"
+      />
+      <path
+        d="M22.6562 18.7188C23.2085 18.7188 23.6562 18.271 23.6562 17.7188C23.6562 17.1665 23.2085 16.7188 22.6562 16.7188V18.7188ZM17.4062 18.7188H22.6562V16.7188H17.4062V18.7188Z"
+        fill="white"
+      />
+      <circle
+        cx="14.7812"
+        cy="17.7188"
+        r="2.28125"
+        stroke="white"
+        stroke-width="2"
+      />
+      <path
+        d="M22.6563 11.5C23.2085 11.5 23.6562 11.0523 23.6563 10.5C23.6562 9.94771 23.2085 9.5 22.6562 9.5L22.6563 11.5ZM22.6562 9.5L12.8125 9.5L12.8125 11.5L22.6563 11.5L22.6562 9.5Z"
+        fill="white"
+      />
+      <path
+        d="M1 9.5C0.447715 9.5 4.82823e-08 9.94771 0 10.5C-4.82823e-08 11.0523 0.447715 11.5 1 11.5L1 9.5ZM6.25 9.5L1 9.5L1 11.5L6.25 11.5L6.25 9.5Z"
+        fill="white"
+      />
+      <circle
+        cx="9.53125"
+        cy="10.5"
+        r="2.28125"
+        transform="rotate(-180 9.53125 10.5)"
+        stroke="white"
+        stroke-width="2"
+      />
+    </svg>
+
+    <p class="filters__header-title">Φίλτρα</p>
+
+    <button
+      class="filters__close"
+      aria-label="Close filters"
+      (click)="toggleFilters()"
+    >
+      <svg
+        width="23"
+        height="23"
+        viewBox="0 0 23 23"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M23 2.31643L20.6836 0L11.5 9.18357L2.31643 0L0 2.31643L9.18357 11.5L0 20.6836L2.31643 23L11.5 13.8164L20.6836 23L23 20.6836L13.8164 11.5L23 2.31643Z"
+          fill="white"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div class="filters__main">
+    <div class="filters__main-title">
+      <p class="filters__main-title">Αναζήτηση έργων</p>
+    </div>
+
+    <div class="filters__control">
+      <form
+        [formGroup]="titleSearchForm"
+        class="search__form"
+        (ngSubmit)="onTitleSearchSubmit()"
+      >
+        <label class="filters__label" for="title">Ανά τίτλο έργου</label>
+        <div class="filters__input-wrapper">
+          <input
+            id="title"
+            name="title"
+            type="text"
+            class="filters__input search__input"
+            placeholder="Τίτλος έργου..."
+            formControlName="searchValue"
+          />
+        </div>
+        <button
+          type="submit"
+          [disabled]="titleSearchForm.invalid"
+          class="filters__btn"
+        >
+          Αναζήτηση
+        </button>
+      </form>
+    </div>
+
+    <div class="filters__control">
+      <form
+        [formGroup]="creatorSearchForm"
+        class="search__form"
+        (ngSubmit)="onCreatorSearchSubmit()"
+      >
+        <label class="filters__label" for="creator">Ανά καλλιτέχνη</label>
+        <div class="filters__input-wrapper">
+          <input
+            id="creator"
+            name="creator"
+            type="text"
+            class="filters__input search__input"
+            placeholder="Όνομα καλλιτέχνη..."
+            formControlName="searchValue"
+          />
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="creatorSearchForm.invalid"
+          class="filters__btn"
+        >
+          Αναζήτηση
+        </button>
+      </form>
+    </div>
+
+    <button class="filters__clear-btn" (click)="onClearFilters()">
+      Καθαρισμός φίλτρων
+    </button>
+  </div>
+</div>  -->
