@@ -1,43 +1,146 @@
-<!-- <div class="search">
-  <form
-    [formGroup]="titleSearchForm"
-    class="search__form"
-    (ngSubmit)="onTitleSearchSubmit()"
-  >
-    <input
-      type="text"
-      class="search__input"
-      placeholder="Τίτλος έργου..."
-      formControlName="searchValue"
-    />
-    <button
-      type="submit"
-      [disabled]="titleSearchForm.invalid"
-      class="search__submit-btn btn-outline"
-    >
-      Αναζήτηση
-    </button>
-  </form>
-</div>
+<div [ngClass]="{ closed: !isFiltersOpen }" class="filters__overlay"></div>
 
-<div class="search">
-  <form
-    [formGroup]="creatorSearchForm"
-    class="search__form"
-    (ngSubmit)="onSearchSubmit()"
-  >
-    <input
-      type="text"
-      class="search__input"
-      placeholder="Όνομα καλλιτέχνη..."
-      formControlName="searchValue"
-    />
-    <button
-      type="submit"
-      [disabled]="creatorSearchForm.invalid"
-      class="search__submit-btn btn-outline"
+<div [ngClass]="{ closed: !isFiltersOpen }" class="filters">
+  <div class="filters__header">
+    <svg
+      width="24"
+      height="21"
+      viewBox="0 0 24 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      Αναζήτηση
+      <path
+        d="M1 2.28125C0.447715 2.28125 0 2.72897 0 3.28125C0 3.83353 0.447715 4.28125 1 4.28125V2.28125ZM1 4.28125H11.5V2.28125H1V4.28125Z"
+        fill="white"
+      />
+      <path
+        d="M22.6562 4.28125C23.2085 4.28125 23.6562 3.83353 23.6562 3.28125C23.6562 2.72897 23.2085 2.28125 22.6562 2.28125V4.28125ZM17.4062 4.28125H22.6562V2.28125H17.4062V4.28125Z"
+        fill="white"
+      />
+      <circle
+        cx="14.7812"
+        cy="3.28125"
+        r="2.28125"
+        stroke="white"
+        stroke-width="2"
+      />
+      <path
+        d="M1 16.7188C0.447715 16.7188 0 17.1665 0 17.7188C0 18.271 0.447715 18.7188 1 18.7188V16.7188ZM1 18.7188H11.5V16.7188H1V18.7188Z"
+        fill="white"
+      />
+      <path
+        d="M22.6562 18.7188C23.2085 18.7188 23.6562 18.271 23.6562 17.7188C23.6562 17.1665 23.2085 16.7188 22.6562 16.7188V18.7188ZM17.4062 18.7188H22.6562V16.7188H17.4062V18.7188Z"
+        fill="white"
+      />
+      <circle
+        cx="14.7812"
+        cy="17.7188"
+        r="2.28125"
+        stroke="white"
+        stroke-width="2"
+      />
+      <path
+        d="M22.6563 11.5C23.2085 11.5 23.6562 11.0523 23.6563 10.5C23.6562 9.94771 23.2085 9.5 22.6562 9.5L22.6563 11.5ZM22.6562 9.5L12.8125 9.5L12.8125 11.5L22.6563 11.5L22.6562 9.5Z"
+        fill="white"
+      />
+      <path
+        d="M1 9.5C0.447715 9.5 4.82823e-08 9.94771 0 10.5C-4.82823e-08 11.0523 0.447715 11.5 1 11.5L1 9.5ZM6.25 9.5L1 9.5L1 11.5L6.25 11.5L6.25 9.5Z"
+        fill="white"
+      />
+      <circle
+        cx="9.53125"
+        cy="10.5"
+        r="2.28125"
+        transform="rotate(-180 9.53125 10.5)"
+        stroke="white"
+        stroke-width="2"
+      />
+    </svg>
+
+    <p class="filters__header-title">Φίλτρα</p>
+
+    <button
+      class="filters__close"
+      aria-label="Close filters"
+      (click)="onCloseFilters()"
+    >
+      <svg
+        width="23"
+        height="23"
+        viewBox="0 0 23 23"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M23 2.31643L20.6836 0L11.5 9.18357L2.31643 0L0 2.31643L9.18357 11.5L0 20.6836L2.31643 23L11.5 13.8164L20.6836 23L23 20.6836L13.8164 11.5L23 2.31643Z"
+          fill="white"
+        />
+      </svg>
     </button>
-  </form>
-</div> -->
+  </div>
+
+  <div class="filters__main">
+    <div class="filters__main-title">
+      <p class="filters__main-title">Αναζήτηση έργων</p>
+    </div>
+
+    <div class="filters__control">
+      <form
+        [formGroup]="titleSearchForm"
+        class="search__form"
+        (ngSubmit)="onTitleSearchSubmit()"
+      >
+        <label class="filters__label" for="title">Ανά τίτλο έργου</label>
+        <div class="filters__input-wrapper">
+          <input
+            id="title"
+            name="title"
+            type="text"
+            class="filters__input search__input"
+            placeholder="Τίτλος έργου..."
+            formControlName="searchValue"
+          />
+        </div>
+        <button
+          type="submit"
+          [disabled]="titleSearchForm.invalid"
+          class="filters__btn"
+        >
+          Αναζήτηση
+        </button>
+      </form>
+    </div>
+
+    <div class="filters__control">
+      <form
+        [formGroup]="creatorSearchForm"
+        class="search__form"
+        (ngSubmit)="onCreatorSearchSubmit()"
+      >
+        <label class="filters__label" for="creator">Ανά καλλιτέχνη</label>
+        <div class="filters__input-wrapper">
+          <input
+            id="creator"
+            name="creator"
+            type="text"
+            class="filters__input search__input"
+            placeholder="Όνομα καλλιτέχνη..."
+            formControlName="searchValue"
+          />
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="creatorSearchForm.invalid"
+          class="filters__btn"
+        >
+          Αναζήτηση
+        </button>
+      </form>
+    </div>
+
+    <button class="filters__clear-btn" (click)="onClearFilters()">
+      Καθαρισμός φίλτρων
+    </button>
+  </div>
+</div>

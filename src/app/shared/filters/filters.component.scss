@@ -1,0 +1,118 @@
+.filters {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(100%, 25rem);
+  min-height: 100vh;
+  background-color: var(--color-white);
+  transition: transform 0.2s ease-in-out;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1rem var(--rds-2);
+    background-color: var(--color-tertiary);
+    color: var(--color-white);
+  }
+
+  &__header-title {
+    font-size: var(--fs-16);
+    font-weight: 700;
+    margin-right: auto;
+  }
+
+  &__main {
+    padding: 1rem var(--rds-2);
+  }
+
+  &__main-title {
+    font-size: var(--fs-16);
+    margin-bottom: 2rem;
+  }
+
+  &__close {
+    background-color: transparent;
+    border: 0;
+  }
+
+  &__control {
+    margin-bottom: 3.5rem;
+    & form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__label {
+    font-size: var(--fs-16);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 4rem;
+    border-left: 1.5px solid var(--color-tertiary);
+    border-bottom: 1.5px solid var(--color-tertiary);
+    position: relative;
+  }
+
+  &__input {
+    // position: absolute;
+    // left: 0;
+    // bottom: 0;
+
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+    outline: 0;
+    color: var(--color-text);
+    border: 1.5px solid var(--color-tertiary);
+    transform: translateY(50%);
+  }
+
+  &__btn {
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+    padding: 0.5em 1.5em;
+
+    background-color: var(--color-tertiary);
+    border: 1.5px solid var(--color-tertiary);
+    color: var(--color-white);
+  }
+
+  &__clear-btn {
+    padding: 0.5em 1.5em;
+    margin-left: 1.5rem;
+    background-color: var(--color-white);
+    border: 1.5px solid var(--color-tertiary);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--color-tertiary);
+      color: var(--color-white);
+    }
+  }
+
+  &.closed {
+    transform: translateX(100%);
+  }
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+
+    background-color: var(--color-black);
+    opacity: 0.5;
+    transition: transform 0.2s ease-in-out;
+
+    &.closed {
+      display: none;
+    }
+  }
+}
