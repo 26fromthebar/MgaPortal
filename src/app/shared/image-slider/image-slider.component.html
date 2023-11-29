@@ -1,4 +1,4 @@
-<div class="slider">
+<div *ngIf="slides.length > 0" class="slider">
   <div
     *ngFor="let item of slides; index as i"
     [ngClass]="{ active: currentIndex === i }"
@@ -26,4 +26,8 @@
       Επόμενο >
     </button>
   </div>
+</div>
+
+<div *ngIf="slides.length === 0" class="slider__default-img-wrapper">
+  <img src="/assets/images/default-image.jpg" alt="Default image" />
 </div>

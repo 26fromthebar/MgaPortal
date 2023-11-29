@@ -7,9 +7,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ItemComponent } from './components/item/item.component';
 import { ApplicationSingleComponent } from './components/application-single/application-single.component';
 import { GamesComponent } from './components/games/games.component';
+import { ListDataResolver } from './services/list-data.resolver';
 
 const routes: Routes = [
-  { path: 'collections', component: CollectionsComponent },
+  {
+    path: 'collections',
+    component: CollectionsComponent,
+    // resolve: { listData: ListDataResolver },
+  },
   { path: 'collections/:uuid', component: ItemComponent },
   { path: 'applications', component: ApplicationsComponent },
   { path: 'applications/web-app', component: ApplicationSingleComponent },

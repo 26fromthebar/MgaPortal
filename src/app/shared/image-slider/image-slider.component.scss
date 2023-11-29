@@ -70,4 +70,16 @@
       @extend .slider__btn;
     }
   }
+
+  &__default-img-wrapper {
+    width: clamp(18rem, 70%, 60rem);
+    margin-inline: auto;
+
+    overflow: hidden;
+
+    & img {
+      object-fit: contain;
+      margin-inline: auto;
+    }
+  }
 }

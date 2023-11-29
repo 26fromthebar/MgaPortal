@@ -14,55 +14,55 @@ import { IStreamFile } from 'src/app/types/istream-file';
 export class ItemComponent implements OnInit {
   item!: IDetailedItem;
   itemFiles: IStreamFile[] = [];
-  sampleFiles: IStreamFile[] = [
-    {
-      createdAt: '2023-11-16T17:38:57.632751',
-      filename: '1617.jpg',
-      filesize: 2378349,
-      mimeType: 'image/jpeg',
-      signature: null,
-      thumbnails: {
-        largeUrl: '',
-        mediumUrl:
-          'https://storev2-api.repox.io/files/07953a23-c249-48fd-bcfe-eb0ed9ad0247/view?t=mga_rodou',
-        smallUrl: '',
-      },
-      uuid: 'db33eea5-5165-4b12-a677-00223934a3c0',
-      viewUrl:
-        'https://storev2-api.repox.io/files/db33eea5-5165-4b12-a677-00223934a3c0/view?t=mga_rodou',
-    },
+  // sampleFiles: IStreamFile[] = [
+  //   {
+  //     createdAt: '2023-11-16T17:38:57.632751',
+  //     filename: '1617.jpg',
+  //     filesize: 2378349,
+  //     mimeType: 'image/jpeg',
+  //     signature: null,
+  //     thumbnails: {
+  //       largeUrl: '',
+  //       mediumUrl:
+  //         'https://storev2-api.repox.io/files/07953a23-c249-48fd-bcfe-eb0ed9ad0247/view?t=mga_rodou',
+  //       smallUrl: '',
+  //     },
+  //     uuid: 'db33eea5-5165-4b12-a677-00223934a3c0',
+  //     viewUrl:
+  //       'https://storev2-api.repox.io/files/db33eea5-5165-4b12-a677-00223934a3c0/view?t=mga_rodou',
+  //   },
 
-    {
-      createdAt: '2023-11-16T17:38:57.632751',
-      filename: '1617.jpg',
-      filesize: 2378349,
-      mimeType: 'image/jpeg',
-      signature: null,
-      thumbnails: {
-        largeUrl: '',
-        mediumUrl:
-          'https://storev2-api.repox.io/files/07953a23-c249-48fd-bcfe-eb0ed9ad0247/view?t=mga_rodou',
-        smallUrl: '',
-      },
-      uuid: 'db33eea5-5165-4b12-a677-00223934a3c0',
-      viewUrl: '/assets/images/img-1.png',
-    },
-    {
-      createdAt: '2023-11-16T17:38:57.632751',
-      filename: '1617.jpg',
-      filesize: 2378349,
-      mimeType: 'image/jpeg',
-      signature: null,
-      thumbnails: {
-        largeUrl: '',
-        mediumUrl:
-          'https://storev2-api.repox.io/files/07953a23-c249-48fd-bcfe-eb0ed9ad0247/view?t=mga_rodou',
-        smallUrl: '',
-      },
-      uuid: 'db33eea5-5165-4b12-a677-00223934a3c0',
-      viewUrl: '/assets/images/img-2.png',
-    },
-  ];
+  //   {
+  //     createdAt: '2023-11-16T17:38:57.632751',
+  //     filename: '1617.jpg',
+  //     filesize: 2378349,
+  //     mimeType: 'image/jpeg',
+  //     signature: null,
+  //     thumbnails: {
+  //       largeUrl: '',
+  //       mediumUrl:
+  //         'https://storev2-api.repox.io/files/07953a23-c249-48fd-bcfe-eb0ed9ad0247/view?t=mga_rodou',
+  //       smallUrl: '',
+  //     },
+  //     uuid: 'db33eea5-5165-4b12-a677-00223934a3c0',
+  //     viewUrl: '/assets/images/img-1.png',
+  //   },
+  //   {
+  //     createdAt: '2023-11-16T17:38:57.632751',
+  //     filename: '1617.jpg',
+  //     filesize: 2378349,
+  //     mimeType: 'image/jpeg',
+  //     signature: null,
+  //     thumbnails: {
+  //       largeUrl: '',
+  //       mediumUrl:
+  //         'https://storev2-api.repox.io/files/07953a23-c249-48fd-bcfe-eb0ed9ad0247/view?t=mga_rodou',
+  //       smallUrl: '',
+  //     },
+  //     uuid: 'db33eea5-5165-4b12-a677-00223934a3c0',
+  //     viewUrl: '/assets/images/img-2.png',
+  //   },
+  // ];
   isFullscreen: boolean = false;
   isSharing: boolean = false;
   private shareUrl = 'https://your-website-url.com';
@@ -85,7 +85,7 @@ export class ItemComponent implements OnInit {
   fetchContainer(id: string) {
     this.dataService.getContainer(id).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
 
         const itemWithDetails: IDetailedItem = {
           id: res.properties?.find(
